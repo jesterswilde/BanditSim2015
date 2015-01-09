@@ -11,35 +11,48 @@ public class Hideout : MonoBehaviour {
 	[SerializeField] //Food is needed to feed your peeps. More peeps, the faster food depletes. We will display this to the player in how long their food supplies will last
 	int _totalFood = 100; 
 	public int Food{ get { return _totalFood; } set { _totalFood = value; } }
-	int _daysOfFood = 0; 
-	public int DaysOfFood { get { return _daysOfFood; } }
+	public int DaysOfFood { get { return CalcDaysOfFood(); } }
 	bool _hasFood; 
 
+	List<Building> _builtRooms = new List<Building> (); 
+	[SerializeField]
+	int _starBanditCap = 5; 
+	[SerializeField]
+	int _currentBanditCap =5; 
 
+	int CalcDaysOfFood(){
+		float _dailyFood = 0; 
+		foreach (Bandit _theBandit in _allBandits) {
+			_dailyFood += _theBandit.FoodConsumption; 
+		}
+		if(_dailyFood != 0){
+			return _totalFood /(int)_dailyFood; 
+		}
+		return 9999; 
+	}
 	public void AddBandit(Bandit _newBandit){
 		_allBandits.Add (_newBandit); 
+		SetDirty (); 
 	}
 	public void RemoveBandit(Bandit _deadBandit){
 		_allBandits.Remove (_deadBandit); 
+		SetDirty ();
 	}
 	void SetDirty(){ //When set dirty, everything will recalculate, such as howlong food will last. 
 		//gets how many days of food you have
-		float _foodEachDay = 0;
-		foreach (Bandit _theBandit in _allBandits) {
-			_foodEachDay += _theBandit.FoodConsumption; 
-		}
-		if(_foodEachDay > 0){
-			_daysOfFood = (int)(_totalFood / _foodEachDay);
-		}
 		if (_totalFood <= 0) {
 			_hasFood = false; 		
 		}
 		else{
 			_hasFood = true; 
 		}
+		World.Map.UpdateMapUI ();
 	}
 	public void NewDay(){
 		FeedBandits (); 
+	}
+	public void NextHour(){
+		
 	}
 	void FeedBandits(){
 		float _foodConsumed = 0 ; 
@@ -64,5 +77,6 @@ public class Hideout : MonoBehaviour {
 				_theBandit.Starving = true; 
 			}
 		}
+		SetDirty (); 
 	}
 }

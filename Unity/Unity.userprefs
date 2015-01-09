@@ -1,11 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Bandit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Hideout.cs">
     <Files>
-      <File FileName="Assets\Code\Hideout.cs" Line="16" Column="3" />
-      <File FileName="Assets\Code\Building.cs" Line="7" Column="15" />
-      <File FileName="Assets\Code\Global.cs" Line="29" Column="16" />
-      <File FileName="Assets\Code\Bandit.cs" Line="18" Column="2" />
+      <File FileName="Assets\Code\Bandit.cs" Line="22" Column="15" />
+      <File FileName="Assets\Code\Location.cs" Line="286" Column="52" />
+      <File FileName="Assets\Code\CaravandGuard.cs" Line="50" Column="4" />
+      <File FileName="Assets\Code\Caravan.cs" Line="77" Column="1" />
+      <File FileName="k:\1GAM\Game_4\BanditSim2015\Unity\Assets\Code\Combat.cs" Line="12" Column="28" />
+      <File FileName="Assets\Code\MapUI.cs" Line="33" Column="1" />
+      <File FileName="Assets\Code\Map.cs" Line="27" Column="30" />
+      <File FileName="Assets\Code\Hideout.cs" Line="31" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
