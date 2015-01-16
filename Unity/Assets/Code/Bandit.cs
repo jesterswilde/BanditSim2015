@@ -11,6 +11,8 @@ public class Bandit : MonoBehaviour {
 	[SerializeField]
 	string _name; 
 	public string Name { get { return _name; } set { _name = value; } }
+	bool isFemale; 
+
 	[SerializeField]
 	int _health = 20; 
 	public int Health { get { return _health; } }
@@ -18,9 +20,27 @@ public class Bandit : MonoBehaviour {
 	int _currentHealth = 20; 
 	public int CurrentHealth { get { return _currentHealth; } }
 	[SerializeField]
-	int _level = 1; 
-	int _XP = 0; 
 	int _DR = 0; 
+	public int DR { get { return _DR; } }
+
+	int _level = 0; 
+	public int Level { get { return _level; } }
+	int _xp = 0; 
+	public int XP { get { return _xp; } }
+	float _agility = 0; 
+	public float Agility { get { return _agility; } }
+	float _range = 0;
+	public float Range { get { return _range; } }
+	float _magic = 0; 
+	public float Magic { get { return _magic; } }
+	float _building = 0; 
+	public float Building { get { return _building; } }
+	float _cunning = 0; 
+	public float Cunning { get { return _cunning; } }
+	float _crafty = 0; 
+	public float Crafty { get { return _crafty; } }
+
+	float _loyalty; 
 	[SerializeField]
 	float _foodConsumption = 1; //how much food each dude eats in a day. 
 	public float FoodConsumption { get { return _foodConsumption; } }
@@ -31,6 +51,8 @@ public class Bandit : MonoBehaviour {
 	int _id; 
 	bool _isAlive = true; 
 	public bool IsAlive { get { return _isAlive; } }
+	Items[] _equippedGear = {null,null,null}; 
+	Items[] EquippedGear { get { return _equippedGear; } }
 
 	CaravandGuard _guardTarget; 
 
@@ -39,6 +61,10 @@ public class Bandit : MonoBehaviour {
 	[SerializeField]
 	Actions _currentTask; //whatever they are currently assigned to do
 
+
+
+
+	//TIME STUFF =----------------------------------------------------------------------------------
 	public void NewDay(){ //they spent the night wherevery they are at. 
 		if (_starving) {
 			Starve(); 
@@ -67,9 +93,24 @@ public class Bandit : MonoBehaviour {
 		LeaveLocation (); 
 		ArrivedAtLocation (_loc); 
 	}
+	
+	public void TimeDamage(int _damage){ //damage from being exhausted, dr doesnot affect
+		_currentHealth -= _damage; 
+		CheckHealth (); 
+	}
+	public void Rest(int _healing){
+		if (!_starving) {
+			_currentHealth += _healing;
+			if(_currentHealth > _health){
+				_currentHealth = _health; 
+			}
+		}
+	}
 
 
-	//this is the combat section
+
+
+	//COMBAT and death, they go hand n hand ya know ----------------------------------------------------------------------
 	public int DoDamage(){ //there will be a better system here eventually
 		return _level + Random.Range(1,6); 
 	}
@@ -92,18 +133,6 @@ public class Bandit : MonoBehaviour {
 			_guardTarget.TakeDamage (DoDamage ()); //deal damage
 		}
 	}
-	public void TimeDamage(int _damage){ //damage from being exhausted, dr doesnot affect
-		_currentHealth -= _damage; 
-		CheckHealth (); 
-	}
-	public void Rest(int _healing){
-		if (!_starving) {
-			_currentHealth += _healing;
-			if(_currentHealth > _health){
-				_currentHealth = _health; 
-			}
-		}
-	}
 	void CheckHealth(){
 		if (_currentHealth <= 0) {
 			Die(); 		
@@ -116,18 +145,39 @@ public class Bandit : MonoBehaviour {
 		_isAlive = false; 
 		Destroy (this.gameObject); 
 	}
-	//Leveling up and XP should go here
 
 
+	
+
+	//LEVEL & XP ------------------------------------------------------------------------------------------------------
+	void GainXP(int _xpGained){
+		_xp += _xpGained; 
+		if (_xp >= (_level + 1) * 100) {
+			_xp -= (_level+1)*100;
+			LevelUp(); 
+		}
+	}
+
+	void LevelUp(){
+		_level += 1; 
+	}
+
+
+
+
+
+
+
+	//STARTUP, everything has got to start somewhere -------------------------------------------------------------------
 	void SpawnBandit(){
 		_currentLocation = World.HideoutLoc; 
 		World.HideoutLoc.BanditArrives (this); 
 		World.TheHideout.AddBandit (this); 
 	}
 	void Start(){
-		SpawnBandit (); 	
 		_id = World.GetID ();
 		_name = "Bandit_" + _id.ToString (); 
+		SpawnBandit (); 
 	}
 
 }

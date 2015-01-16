@@ -54,16 +54,22 @@
      <Compile Include="Assets\Code\BMath.cs" />
      <Compile Include="Assets\Code\Bandit.cs" />
      <Compile Include="Assets\Code\Building.cs" />
+     <Compile Include="Assets\Code\BuildingManager.cs" />
+     <Compile Include="Assets\Code\BuildingUnit.cs" />
+     <Compile Include="Assets\Code\Buildings\BD_Maproom.cs" />
      <Compile Include="Assets\Code\Caravan.cs" />
      <Compile Include="Assets\Code\CaravanRoute.cs" />
      <Compile Include="Assets\Code\CaravandGuard.cs" />
      <Compile Include="Assets\Code\Combat.cs" />
      <Compile Include="Assets\Code\Controls.cs" />
      <Compile Include="Assets\Code\Hideout.cs" />
+     <Compile Include="Assets\Code\Items.cs" />
      <Compile Include="Assets\Code\Location.cs" />
      <Compile Include="Assets\Code\Map.cs" />
-     <Compile Include="Assets\Code\MapUI.cs" />
      <Compile Include="Assets\Code\TestCase.cs" />
+     <Compile Include="Assets\Code\UI\ActionsUI.cs" />
+     <Compile Include="Assets\Code\UI\ActtionsUI\BanditsUI.cs" />
+     <Compile Include="Assets\Code\UI\PanelUI.cs" />
      <Compile Include="Assets\Code\World.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

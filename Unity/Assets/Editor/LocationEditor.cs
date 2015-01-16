@@ -40,6 +40,7 @@ public class LocationEditor : Editor {
 			EditorGUILayout.Separator(); 
 		}
 		_locEdit.DailyHealthMod = EditorGUILayout.IntField ("Damage/Healing:", _locEdit.DailyHealthMod);
+
 		// ROAD POINTS ====================================================================================
 		showRoad = EditorGUILayout.Foldout (showRoad, "Road"); 
 		if(showRoad){ 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic; 
 
@@ -10,7 +10,7 @@ public class Map : MonoBehaviour {
 	public Location SelLocation { get {return _selLocation;}}
 	Bandit _selBandit; 
 	bool _draggingBandit; 
-	MapUI _mapUI; 
+	PanelUI _mapUI; 
 
 	public void SelectLocation(Location _theLoc){
 		_selLocation = _theLoc; 
@@ -23,11 +23,13 @@ public class Map : MonoBehaviour {
 		_selLocation = null; 
 	}
 	public void UpdateMapUI(){
+		/*
 		_mapUI.UpdateBanditButtons (); 
 		_mapUI.UpdateInfoPanel (); 
+		*/
 	}
 
 	void Awake(){
-		_mapUI = gameObject.GetComponent<MapUI> (); 
+		_mapUI = gameObject.GetComponent<PanelUI> (); 
 	}
 }

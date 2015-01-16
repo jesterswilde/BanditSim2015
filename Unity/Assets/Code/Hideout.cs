@@ -5,6 +5,13 @@ using System.Collections.Generic;
 public class Hideout : MonoBehaviour {
 
 	List<Bandit> _allBandits = new List<Bandit>(); 
+	public List<Bandit> AllBandits { get { return _allBandits; } }
+
+	List<Items> _allItems = new List<Items>(); //every item that you or your bandits control 
+	List<Items> _storedItems = new List<Items>(); //all items that are not equipped
+
+	List<Building> _builtBuildings = new List<Building>(); 
+
 	[SerializeField] //Money is used to buy things like new buildings. It also functions as your score. As we get further into the game it will do more
 	int _money = 100; 
 	public int Money { get { return _money; } set { _money = value; } }
@@ -14,22 +21,17 @@ public class Hideout : MonoBehaviour {
 	public int DaysOfFood { get { return CalcDaysOfFood(); } }
 	bool _hasFood; 
 
-	List<Building> _builtRooms = new List<Building> (); 
-	[SerializeField]
-	int _starBanditCap = 5; 
-	[SerializeField]
-	int _currentBanditCap =5; 
 
-	int CalcDaysOfFood(){
-		float _dailyFood = 0; 
-		foreach (Bandit _theBandit in _allBandits) {
-			_dailyFood += _theBandit.FoodConsumption; 
-		}
-		if(_dailyFood != 0){
-			return _totalFood /(int)_dailyFood; 
-		}
-		return 9999; 
-	}
+	[SerializeField]
+	int _banditCap = 0;
+	int _foodCap = 0; 
+	int _moneyCap = 0; 
+	[SerializeField]
+	float _banditChance = 1; 
+
+
+
+	//ADDING BANDITS ----------------------------------------------------------------------------------------
 	public void AddBandit(Bandit _newBandit){
 		_allBandits.Add (_newBandit); 
 		SetDirty (); 
@@ -38,21 +40,49 @@ public class Hideout : MonoBehaviour {
 		_allBandits.Remove (_deadBandit); 
 		SetDirty ();
 	}
-	void SetDirty(){ //When set dirty, everything will recalculate, such as howlong food will last. 
-		//gets how many days of food you have
-		if (_totalFood <= 0) {
-			_hasFood = false; 		
+	void NewBanditsArrive(){ //chance of getting a new bandit every day
+		if (Random.Range (0f, 100f) < _banditChance) {
+			World.MakeBandit(); 
+			Debug.Log("New Bandit Arrives"); 
 		}
-		else{
-			_hasFood = true; 
-		}
-		World.Map.UpdateMapUI ();
 	}
+
+
+
+	//ITEMS ------------------------------------------------------------------------------------------------
+	public void AddItem(Items _theItem){
+		_allItems.Add (_theItem); 
+		_storedItems.Add (_theItem); 
+	}
+	public void RemoveItem(Items _theItem){
+		_allItems.Remove (_theItem); 
+	}
+
+
+
+	//BUILDINGS -----------------------------------------------------------------------------------------------
+	void ResetToStartingValues(){
+		_banditCap = 0; 
+	}
+	public void RefreshBuildingStats(){
+		ResetToStartingValues (); 
+		foreach (Building _buildling in _builtBuildings) {
+			_buildling.BuildingEffect(ref _banditCap,ref _foodCap,ref _moneyCap) ;
+		}
+	}
+	public void AddBuilding(Building _theBuilding){
+		_builtBuildings.Add(_theBuilding); 
+		RefreshBuildingStats (); 
+	}
+
+
+	//Time --------------------------------------------------------------------------------------
 	public void NewDay(){
 		FeedBandits (); 
-	}
+		NewBanditsArrive (); 
+	}	
 	public void NextHour(){
-		
+	
 	}
 	void FeedBandits(){
 		float _foodConsumed = 0 ; 
@@ -78,5 +108,28 @@ public class Hideout : MonoBehaviour {
 			}
 		}
 		SetDirty (); 
+	}
+	int CalcDaysOfFood(){
+		float _dailyFood = 0; 
+		foreach (Bandit _theBandit in _allBandits) {
+			_dailyFood += _theBandit.FoodConsumption; 
+		}
+		if(_dailyFood != 0){
+			return _totalFood /(int)_dailyFood; 
+		}
+		return 9999; 
+	}
+
+
+	//BOOK KEEPING ----------------------------------------------------------------------------------------------------------
+	void SetDirty(){ //When set dirty, everything will recalculate, such as howlong food will last. 
+		//gets how many days of food you have
+		if (_totalFood <= 0) {
+			_hasFood = false; 		
+		}
+		else{
+			_hasFood = true; 
+		}
+		World.PanelUI.ReloadPanels (); 
 	}
 }

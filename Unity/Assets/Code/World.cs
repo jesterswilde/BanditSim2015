@@ -5,7 +5,17 @@ using System.Collections.Generic;
 public class World : MonoBehaviour {
 
 	//The global class holds pointers to all Singletons, and universal lists.  (Except bandits they live at the hideout. Might move htem here. 
-
+	/* This is a big document so we are laying out a table of ocntents
+	 * 
+	 * 		1 - Variable Decleration 
+	 * 		2 - Time 
+	 * 		3 - Location 
+	 * 		4 - Controls
+	 * 		5 - Caravan / Route
+	 * 		6 - Bandit 
+	 * 		7 - Book Keeping / Start & Update
+	 * 
+	 * */
 
 	public Hideout theHideout; 
 	public static Hideout TheHideout; 
@@ -16,6 +26,11 @@ public class World : MonoBehaviour {
 	public Camera cam; 
 	public Map map; 
 	public static Map Map; 
+	public BuildingManager buildingManager; 
+	public static BuildingManager bManager; 
+	public PanelUI thePanelUI; 
+	public static PanelUI PanelUI; 
+
 
 	public Object theBanditPrefab;
 
@@ -39,6 +54,9 @@ public class World : MonoBehaviour {
 	Controls _currentControls;
 	MapControl _mapControls = new MapControl(); 
 	HideoutControl _hideoutControls = new HideoutControl(); 
+	bool _mapMode = false;
+	public bool _inModeTransition = false;
+	bool _canTransition = true; 
 
 	
 	//Time Stuff ----------------------------------------------------------
@@ -85,6 +103,49 @@ public class World : MonoBehaviour {
 		}
 	}
 
+	//Controls Stuff ---------------------------------------------------------------------------
+
+	void TransitionTimer(){
+		_canTransition = true; 
+	}
+	public void TransitionControls(){
+		if (_mapMode && !_inModeTransition && _canTransition) { //begin transition to hideout mode
+			_mapMode = false;
+			_inModeTransition = true;
+			mainCam.transform.parent = null; 
+		}
+		if (!_mapMode && _inModeTransition && _canTransition) { //transitioning to hideout mode
+			mainCam.transform.position = Vector3.Lerp(mainCam.transform.position,HideoutParent.position, Time.deltaTime * 5); 
+			mainCam.transform.rotation = Quaternion.Lerp (mainCam.transform.rotation, HideoutParent.rotation, Time.deltaTime * 10); 
+			if( Vector2.Distance(mainCam.transform.position,HideoutParent.position) < .001f){ //camera transition complete
+				mainCam.transform.position = HideoutParent.position; 
+				mainCam.transform.rotation = HideoutParent.rotation;
+				mainCam.transform.parent = HideoutParent; 
+				_inModeTransition = false; 
+				_currentControls = _hideoutControls; 
+				_canTransition = false; 
+				Invoke ("TransitionTimer",.5f); 
+			}
+		}
+		if (!_mapMode && !_inModeTransition && _canTransition) {
+			_mapMode = true;
+			_inModeTransition = true; 
+			mainCam.transform.parent = null; 
+		}
+		if (_mapMode && _inModeTransition && _canTransition) { //transitioning to Map mode
+			mainCam.transform.position = Vector3.Lerp(mainCam.transform.position,MapParent.position, Time.deltaTime * 5); 
+			mainCam.transform.rotation = Quaternion.Lerp (mainCam.transform.rotation, MapParent.rotation, Time.deltaTime*10); 
+			if(Vector2.Distance(mainCam.transform.position,MapParent.position) < .001f){ //camera transition complete
+				mainCam.transform.position = MapParent.position; 
+				mainCam.transform.rotation = MapParent.rotation; 
+				mainCam.transform.parent = MapParent; 
+				_inModeTransition = false; 
+				_currentControls = _mapControls; 
+				_canTransition = false; 
+				Invoke ("TransitionTimer",.5f); 
+			}
+		}
+	}
 
 
 	//Caravan and Route stufff -----------------------------------------------------
@@ -119,9 +180,11 @@ public class World : MonoBehaviour {
 		world = this; 
 		Map = map;
 		mainCam = cam; 
+		bManager = buildingManager; 
 		combat = gameObject.GetComponent<Combat> (); 
 		_hideoutControls.Startup ();
 		_mapControls.Startup ();
+		PanelUI = thePanelUI; 
 
 		_secondsInHour = _secondsInDay / 24; 
 
@@ -130,12 +193,30 @@ public class World : MonoBehaviour {
 
 	}
 	void Start(){
-		_currentControls = _mapControls; 
+		_currentControls = _hideoutControls; 
 	}
 	void Update(){
 		_currentControls.CheckForClicks (); 
+		_currentControls.Hover (); 
+		_currentControls.Movement (); 
+		if(Input.GetKeyDown(KeyCode.M)){
+			TransitionControls(); 
+		}
+		if (_inModeTransition) {
+			TransitionControls(); 
+		}
 	}
 
 
 
 }
+
+/* You exercised for the first time in a while today. (1/13/2015). The feelings of regret were getting unbearable. Hopefully you've found some respite from them.
+ * If you are having trouble, you should try writing notes down on what you want to do each morning, on the nights prior. It is working so far.
+ * 
+ * You had grand ideas on how to push this module (module 2) for the FX TD class to the next level. YOu are poor and don't have the software but decided
+ * to take the concpets and apply them with lower end tools as well as to FX. You major failing is that you need to package them. Make them (and yourself)
+ * sellable. CUrrently nobody is buying. Don't let the small library of stuff to show stop you from putting it out there. It's better than nothing. 
+ * 
+ * Your curry tasted good. 
+ */
