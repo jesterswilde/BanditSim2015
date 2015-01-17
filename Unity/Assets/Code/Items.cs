@@ -3,13 +3,19 @@ using System.Collections;
 
 public class Items : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	[SerializeField]
+	protected string _name;
+	[SerializeField]
+	protected string _description; 
+
+	[SerializeField]
+	protected int _value; 
+
+
+	public virtual void EquipItem(){
+		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public virtual void UnequipItme(){
+		
 	}
 }

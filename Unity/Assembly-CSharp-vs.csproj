@@ -53,6 +53,8 @@
      <Compile Include="Assets\Code\Actions\Scavenge.cs" />
      <Compile Include="Assets\Code\BMath.cs" />
      <Compile Include="Assets\Code\Bandit.cs" />
+     <Compile Include="Assets\Code\BanditClass.cs" />
+     <Compile Include="Assets\Code\BanditNames.cs" />
      <Compile Include="Assets\Code\Building.cs" />
      <Compile Include="Assets\Code\BuildingManager.cs" />
      <Compile Include="Assets\Code\BuildingUnit.cs" />
@@ -60,6 +62,11 @@
      <Compile Include="Assets\Code\Caravan.cs" />
      <Compile Include="Assets\Code\CaravanRoute.cs" />
      <Compile Include="Assets\Code\CaravandGuard.cs" />
+     <Compile Include="Assets\Code\Classes\ClassBishop.cs" />
+     <Compile Include="Assets\Code\Classes\ClassKnight.cs" />
+     <Compile Include="Assets\Code\Classes\ClassPawn.cs" />
+     <Compile Include="Assets\Code\Classes\ClassQueen.cs" />
+     <Compile Include="Assets\Code\Classes\ClassRook.cs" />
      <Compile Include="Assets\Code\Combat.cs" />
      <Compile Include="Assets\Code\Controls.cs" />
      <Compile Include="Assets\Code\Hideout.cs" />

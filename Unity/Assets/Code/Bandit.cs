@@ -14,31 +14,33 @@ public class Bandit : MonoBehaviour {
 	bool isFemale; 
 
 	[SerializeField]
-	int _health = 20; 
-	public int Health { get { return _health; } }
+	float _health = 10; 
+	public int Health { get { return (int)_health; } }
 	[SerializeField]
-	int _currentHealth = 20; 
-	public int CurrentHealth { get { return _currentHealth; } }
+	float _currentHealth = 10; 
+	public int CurrentHealth { get { return (int)_currentHealth; } }
 	[SerializeField]
-	int _DR = 0; 
-	public int DR { get { return _DR; } }
+	float _DR = 0; 
+	public int DR { get { return (int)_DR; } }
 
 	int _level = 0; 
 	public int Level { get { return _level; } }
 	int _xp = 0; 
 	public int XP { get { return _xp; } }
-	float _agility = 0; 
-	public float Agility { get { return _agility; } }
+	float _damage = 2; 
+	public int Damage{ get {return (int)_damage;}}
+	float _agility = 3; 
+	public int Agility { get { return (int)_agility; } }
 	float _range = 0;
-	public float Range { get { return _range; } }
+	public int Range { get { return (int)_range; } }
 	float _magic = 0; 
-	public float Magic { get { return _magic; } }
+	public int Magic { get { return (int)_magic; } }
 	float _building = 0; 
-	public float Building { get { return _building; } }
+	public int Building { get { return (int)_building; } }
 	float _cunning = 0; 
-	public float Cunning { get { return _cunning; } }
+	public int Cunning { get { return (int)_cunning; } }
 	float _crafty = 0; 
-	public float Crafty { get { return _crafty; } }
+	public int Crafty { get { return (int)_crafty; } }
 
 	float _loyalty; 
 	[SerializeField]
@@ -112,7 +114,7 @@ public class Bandit : MonoBehaviour {
 
 	//COMBAT and death, they go hand n hand ya know ----------------------------------------------------------------------
 	public int DoDamage(){ //there will be a better system here eventually
-		return _level + Random.Range(1,6); 
+		return (int)_damage + Random.Range(1,6); 
 	}
 	public void TakeDamage(int _damage){
 		_currentHealth -= Mathf.Clamp (_damage - _DR, 0, 100000); 
