@@ -103,13 +103,11 @@ public class BuildingManager : MonoBehaviour {
 	}
 	void PlaceStartingBuildings(){
 		Building[] _allBuildings = FindObjectsOfType<Building> ();
-		Debug.Log (_allBuildings.Length); 
 		foreach(Building _building in _allBuildings){
 			_building.IsStartingBuilding(_theGrid); 
 		}
 	}
 	void Start(){
-		Debug.Log ("Stuff"); 
 		MakeGrid (); 
 		PlaceStartingBuildings (); 
 	}

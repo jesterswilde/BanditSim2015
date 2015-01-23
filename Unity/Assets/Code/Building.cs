@@ -34,7 +34,6 @@ public class Building : MonoBehaviour {
 
 
 	public void IsStartingBuilding(List<List<BuildingUnit>> _theGrid){
-		Debug.Log ("I dun got placed"); 
 		transform.position = _theGrid [(int)_startingLocation.y] [(int)_startingLocation.x].Position (); 
 		Build (_theGrid, _theGrid[(int)_startingLocation.y][(int)_startingLocation.x]); 
 	}

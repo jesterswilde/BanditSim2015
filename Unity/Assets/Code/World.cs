@@ -41,6 +41,7 @@ public class World : MonoBehaviour {
 	//Currently the game works on a day by day basis. This may want to be changed to a finer level of granularity. Hours perhaps? Minutes seems too fine. 
 	[SerializeField]
 	float _secondsInDay = 10; 
+	public float SecondsInDay { get { return _secondsInDay; } }
 	float _secondsInHour; 
 	static int _hour = 1; 
 	static int _day = 0; 
@@ -50,6 +51,8 @@ public class World : MonoBehaviour {
 	float _timer = 0;
 
 	static List<Location> _allLocals = new List<Location>(); 
+	LocNode[] _theNodes;
+	CaravanRoute[] _allRoutes; 
 
 	Controls _currentControls;
 	MapControl _mapControls = new MapControl(); 
@@ -61,7 +64,7 @@ public class World : MonoBehaviour {
 	
 	//Time Stuff ----------------------------------------------------------
 	void PassTime(){
-		_timer += Time.fixedDeltaTime; 
+		_timer += Time.deltaTime; 
 		if (_timer > _secondsInHour) {
 			_timer -= _secondsInHour;
 			_hour += 1; 
@@ -74,7 +77,13 @@ public class World : MonoBehaviour {
 		}
 	}
 	void NextHour(){
-
+		foreach (CaravanRoute _theRoute in _allRoutes) {
+			_theRoute.NextHour(); 
+		}
+		TheHideout.NextHour (); 
+		foreach (Location _local in _allLocals) {
+			_local.NextHour(); 
+		}
 	}
 	void NewDay(){
 		TheHideout.NewDay (); 
@@ -93,13 +102,18 @@ public class World : MonoBehaviour {
 	}
 	void LocationStartup(){
 		foreach (Location _loc in _allLocals) {
-			_loc.GetLocationsIDsAndLengths();
+			_loc.GetIDs();
 		}
-		foreach (Location _loc in _allLocals) {
-			_loc.AttachToRoads(); 	
+	}
+	void NodeStartup(){
+		_theNodes = FindObjectsOfType<LocNode> (); 
+		foreach (LocNode _node in _theNodes) {
+			_node.DrawRoads(); 
 		}
-		foreach (Location _loc in _allLocals) {
-			_loc.CalculatePositionsOnRoad(); 		
+	}
+	void CaravanRouteStartup(){
+		foreach (CaravanRoute _route in _allRoutes) {
+			_route.Startups(); 
 		}
 	}
 
@@ -150,10 +164,9 @@ public class World : MonoBehaviour {
 
 	//Caravan and Route stufff -----------------------------------------------------
 	public static void ClearRoute(){
-		foreach (Location _loc in _allLocals) {
-			_loc.routeCalculated = false; 
-			_loc.routeDistance = 100000000000; 
-			_loc.PreviousLoc = null; 
+		foreach (LocNode _loc in world._theNodes ) {
+			_loc.AlreadyCalculated = false; 
+			_loc.RouteDistance = 100000000000;
 		}
 	}
 
@@ -170,9 +183,6 @@ public class World : MonoBehaviour {
 		_id ++;
 		return _id; 
 	}
-	void FixedUpdate(){
-		PassTime (); 
-	}
 	void Awake(){ 
 		//get the static variables
 		TheHideout = theHideout; 
@@ -185,17 +195,22 @@ public class World : MonoBehaviour {
 		_hideoutControls.Startup ();
 		_mapControls.Startup ();
 		PanelUI = thePanelUI; 
+		_allRoutes = FindObjectsOfType<CaravanRoute> (); 
 
 		_secondsInHour = _secondsInDay / 24; 
 
 		CollectLocations (); 
 		LocationStartup (); 
+		NodeStartup (); 
+
 
 	}
 	void Start(){
 		_currentControls = _hideoutControls; 
+		CaravanRouteStartup (); 
 	}
 	void Update(){
+		PassTime (); 
 		_currentControls.CheckForClicks (); 
 		_currentControls.Hover (); 
 		_currentControls.Movement (); 

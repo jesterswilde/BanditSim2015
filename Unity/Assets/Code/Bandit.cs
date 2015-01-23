@@ -56,6 +56,8 @@ public class Bandit : MonoBehaviour {
 	Items[] _equippedGear = {null,null,null}; 
 	Items[] EquippedGear { get { return _equippedGear; } }
 
+	[SerializeField]
+
 	CaravandGuard _guardTarget; 
 
 	[SerializeField]

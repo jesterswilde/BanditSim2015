@@ -14,7 +14,7 @@ public class Map : MonoBehaviour {
 
 	public void SelectLocation(Location _theLoc){
 		_selLocation = _theLoc; 
-		_mapUI.UpdateBanditButtons (); 
+		World.PanelUI.SelectLocation (_selLocation); 
 	}
 	public void SelectBandit (Bandit _theBandit){
 		_selBandit = _theBandit; 
@@ -23,10 +23,7 @@ public class Map : MonoBehaviour {
 		_selLocation = null; 
 	}
 	public void UpdateMapUI(){
-		/*
-		_mapUI.UpdateBanditButtons (); 
-		_mapUI.UpdateInfoPanel (); 
-		*/
+
 	}
 
 	void Awake(){

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PanelUI : MonoBehaviour {
 
 	public Object buttonPrefab; 
-
+	Canvas _canvas; 
 
 	Map _map; 
 	
@@ -23,6 +23,21 @@ public class PanelUI : MonoBehaviour {
 
 	List<Bandit> _selLocBandits = new List<Bandit>(); //all bandits selected from the current location
 	List<Bandit> _selHideoutBandits = new List<Bandit>(); //all bandits selected from hideout
+
+	public Transform leftPanel; 
+	public Transform rightPanel;
+	Animator _leftPanelAnim; 
+	Animator _rightPanelAnim; 
+	
+	[SerializeField]
+	List<ActionsUI> _leftPanelActions = new List<ActionsUI>(); 
+	[SerializeField]
+	List<ActionsUI> _rightPanelActions = new List<ActionsUI>(); 
+	
+	public Object listButton; 
+	
+	ActionsUI _leftActionUI; 
+	ActionsUI _rightActionsUI; 
 	
 
 
@@ -44,20 +59,7 @@ public class PanelUI : MonoBehaviour {
 
 
 	// Side Panel stuff -----------------------------------------------------------------------------------------------------------------
-	public Transform leftPanel; 
-	public Transform rightPanel;
-	Animator _leftPanelAnim; 
-	Animator _rightPanelAnim; 
 
-	[SerializeField]
-	List<ActionsUI> _leftPanelActions = new List<ActionsUI>(); 
-	[SerializeField]
-	List<ActionsUI> _rightPanelActions = new List<ActionsUI>(); 
-
-	public Object listButton; 
-
-	ActionsUI _leftActionUI; 
-	ActionsUI _rightActionsUI; 
 
 	public void ReloadPanels(){
 		if (_leftActionUI != null) {
@@ -115,7 +117,44 @@ public class PanelUI : MonoBehaviour {
 		}
 	}
 
-	
+
+	public Object locationPrefabUI;
+	RectTransform _locUITrans; 
+	// LOCATION STUFF -----------------------------------------------------------------------------------------
+	public void SelectLocation(Location _theLoc ){
+		Debug.Log ("location selected"); 
+		DeslectLocation (); 
+		GameObject _locUI = Instantiate (locationPrefabUI) as GameObject; 
+		_locUI.transform.SetParent (_canvas.transform, false);  
+		_locUITrans = _locUI.transform as RectTransform; 
+		_locUI.transform.position = World.mainCam.WorldToScreenPoint (_theLoc.transform.position); 
+		RedrawLocation (); 
+	}
+	public void RedrawLocation(){
+		
+	}
+	public void DeslectLocation(){
+		if(_locUITrans != null){
+			Destroy (_locUITrans.gameObject); 
+		}
+	}
+
+
+
+
+
+
+
+
+	//STARTUP -----------------------------------------------------------------------------------
+
+	void Start(){
+		_map = World.Map; 
+		GetPanelComponents (); 
+		_canvas = GetComponent<Canvas> ();
+	}
+
+	/*
 	// BANDIT BUTTON STUFF -------------------------------------------------------------------------------------------------------------
 	public void UpdateBanditButtons(){ // call this when you modify the bandit lists
 		ClearLists (); /*
@@ -139,7 +178,6 @@ public class PanelUI : MonoBehaviour {
 			}
 			UpdateLocationButtonOptions (); 
 			UpdateHideoutButtonOptions (); 
-		}*/
 	}
 	void UpdateLocationButtonOptions(){/*
 		for(int i = 0; i < _map.SelLocation.LocalActions.Count; i++){ //populate the list, yay!
@@ -149,7 +187,6 @@ public class PanelUI : MonoBehaviour {
 			_theButton.onClick.AddListener(() => DoLocAction(_index)); 
 			Text _theText = _theButton.GetComponentInChildren<Text>(); 
 			_theText.text = _map.SelLocation.LocalActions[_index].ActionName;
-		}*/
 	}
 	void UpdateHideoutButtonOptions(){/*
 		for(int i = 0; i < World.HideoutLoc.LocalActions.Count ; i++){
@@ -159,7 +196,6 @@ public class PanelUI : MonoBehaviour {
 			_theButton.onClick.AddListener(() => DoHideoutAction(_index)); 
 			Text _theText = _theButton.GetComponentInChildren<Text>(); 
 			_theText.text = World.HideoutLoc.LocalActions[_index].ActionName;
-		}*/
 	}
 
 	void DoLocAction(int i){ //assigns to every selected bandit at the hideout, the chosen location action
@@ -208,7 +244,6 @@ public class PanelUI : MonoBehaviour {
 		_theTextGO.transform.parent = _theButton.transform; 
 		_theTextGO.AddComponent<Text> (); 
 		return _theButton; 
-		*/
 	}
 	public void ClearLists(){ //clears out all the lists and destroys all the buttons. 
 		foreach (Button _theButton in _locBanditButtons) {
@@ -234,10 +269,8 @@ public class PanelUI : MonoBehaviour {
 		_selLocBandits.Clear (); 
 		_selHideoutBandits.Clear (); 
 	}
-	void Start(){
-		_map = World.Map; 
-		GetPanelComponents (); 
-	}
+	*/
+
 
 
 	//So, Moved in with your parents today. It's doesn't feel as unfortunate as it should. You are moving forward but lots of things have fallen off the rails and

@@ -42,13 +42,14 @@ public class Caravan : MonoBehaviour {
 	public List<CaravandGuard> ActiveGuards = new List<CaravandGuard>(); //the Guards that the caravan has
 	//public List<CaravandGuard> ActiveGuards { get { return _activeGuards; } }
 
-	public List<Location> _itinerary = new List<Location>(); 
-	[SerializeField]
-	int _travelSpeed;
-	public int TravelSpeed {get { return _travelSpeed; } set { _travelSpeed = value; }}
+	public List<LocNode> _itinerary = new List<LocNode>(); 
+	float _travelSpeed;
+	public float TravelSpeed {get { return _travelSpeed; } set { _travelSpeed = value; }}
+	int _travelingFrom = 0; 
 
 	int _hasFoughtAt; 
 	public int HasFoughtAt{ get { return _hasFoughtAt; } set { _hasFoughtAt = value; } }
+	float _counter = 0; 
 
 	void SpawnGuards(){ 
 		for(int i = 0; i < _numGuard; i++){
@@ -100,32 +101,36 @@ public class Caravan : MonoBehaviour {
 			CheckLageList(_theList); 
 		}
 	}
-	public void SpawnCaravan(List<Location> _theLocs){ //makes the caravand and places it at the start location
+	public void SpawnCaravan(List<LocNode> _theLocs, float _speed){ //makes the caravand and places it at the start location
 		_itinerary = _theLocs; 
 		transform.position = _itinerary [0].transform.position; 
-		_itinerary.Remove (_itinerary [0]); 
+		_travelSpeed = _speed; 
 	}
-	void Travel(){
-		if (_itinerary.Count > 0) { //if there are still places to go
+	void Travel(){ //called for moving around
+		if (_itinerary.Count > _travelingFrom) { //if there are still places to go
 			Vector3 _direction;
 			Vector3 _destination; 
-			if(_itinerary.Count > 1){
-				_destination = _itinerary[0].TravelDirection(_itinerary[1]); 
+			if(_itinerary.Count > _travelingFrom+1){
+				_destination = _itinerary[_travelingFrom+1].transform.position; 
 			}
 			else{
-				_destination = _itinerary[0].transform.position; 
+				_destination = _itinerary[_travelingFrom].transform.position; 
 			}
 			_direction = (_destination - transform.position).normalized; //this is the direction
 			float _maxDistance = Vector3.Distance(transform.position, _destination); //this is the how far away it is
 			transform.position += _direction * Mathf.Clamp(_travelSpeed*Time.deltaTime,0, _maxDistance); //move it towards the goal
 			if (transform.position == _destination) { //if you are close to your destination
 				transform.position = _destination;
-				_itinerary.Remove(_itinerary[0]); //you have arrived at the next spot
+				_travelingFrom ++; //you have arrived at the next spot
 			}
+		}
+		else{	
+			Destroy(this.gameObject); 
 		}
 	}
 	void Update(){
 		Travel (); 
+
 	}
 	void Start(){
 		SpawnGuards (); 

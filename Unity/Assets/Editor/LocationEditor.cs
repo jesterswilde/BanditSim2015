@@ -50,9 +50,6 @@ public class LocationEditor : Editor {
 				if(_locEdit.RoadLength != 0){
 					EditorGUILayout.LabelField ("Road Length: " + _locEdit.RoadLength.ToString()); 
 				}
-				if(GUILayout.Button("Calculate Road Distance",GUILayout.Width (200))){
-					_locEdit.CalcRoadLength(); 
-				}
 				_locEdit.NumRoadPoints = EditorGUILayout.IntField("Number of Points", _locEdit.NumRoadPoints); 
 				EditorGUI.indentLevel ++; 
 				showRoadPoints = EditorGUILayout.Foldout(showRoadPoints,"The Points"); 

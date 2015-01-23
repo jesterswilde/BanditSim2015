@@ -11,7 +11,6 @@ public class AmbushZone : MonoBehaviour {
 	void OnTriggerEnter(Collider _collider){
 		if(_collider.gameObject.layer == 9){ //it's a caravan that entered the ambush zone
 			Caravan _caravan = _collider.transform.parent.gameObject.GetComponent<Caravan>(); 
-			Debug.Log("The cage comes down"); 
 			_ambush.AndTheCageComesDown (_caravan); 
 		}
 	}

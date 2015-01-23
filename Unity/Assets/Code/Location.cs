@@ -175,14 +175,32 @@ public class Location : MonoBehaviour {
 	//Route Calculation stuff -------------------------------------------------------------------
 	//this is where things get a little dense. 	
 
-	public void GetLocationsIDsAndLengths(){ //does all the startup stuff.
-		CalcRoadLength ();
-		CalcRoadDirection (); 
-		GetID (); 
-		StartupCheck ();
-		DrawRoads (); 
-		StartGame (); 
+	public void MakeRoadPoints(){
+		if(_isRoad){
+			for(int i = 0; i < _roadPoints.Count; i++){
+				LocNode _theNode; 
+				if(_roadPoints[i].GetComponent<LocNode>() ==  null){ //if there isn't a loc node on that point, add one
+					_theNode = _roadPoints[i].gameObject.AddComponent<LocNode>(); 
+					if(_roadPoints[i].GetComponent<Location>() != null){
+						_theNode.Startup(_roadPoints[i].GetComponent<Location>()); //if the locNode is also a location, inform them
+					}
+				}
+				else _theNode = _roadPoints[i].GetComponent<LocNode>();  //if the node was already made, just get it instead
+				if( i > 0){
+					_theNode.ConnectLocNodes(_roadPoints[i-1].GetComponent<LocNode>()); //add the previous node to this node's list of nodes
+				}
+			}
+		}
 	}
+	public void GetIDs(){ //does all the startup stuff.
+		//CalcRoadLength ();
+		//CalcRoadDirection (); 
+		//StartupCheck ();
+		GetID (); 
+		StartGame (); 
+		MakeRoadPoints (); 
+	}
+	/*
 	public void ConnectRoadsAndCities(){ //this is called after. Think of it like 'start' and 'awake'
 		AttachToRoads (); 
 	}
@@ -270,22 +288,7 @@ public class Location : MonoBehaviour {
 	void StartupCheck(){ //spit out ledgible errors for designers
 
 	}
-	public void DrawRoads(){ //this actualy draws the connections between the points on the road
-		//I need to turn off mesh renderers of road points, also need to pull in a texture. 
-		if(_isRoad){
-			if (_lineRender != null) { //clears out the old one
-				Destroy(_lineRender.gameObject); 		
-			}
-			GameObject _go = new GameObject (); 
-			_lineRender = _go.AddComponent<LineRenderer> (); 
-			_go.transform.parent = this.transform;
-			_lineRender.SetVertexCount (_roadPoints.Count);
-			for(int i = 0; i < _roadPoints.Count; i ++){
-				_lineRender.SetPosition (i, _roadPoints[i].position); 
-			}
-			_lineRender.material  = World.Map.roadMaterial; 
-		}
-	}
+	*/
 
 
 	// ACTIONS STUFF -----------------------------------------------------------------------------------

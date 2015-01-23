@@ -71,6 +71,7 @@
      <Compile Include="Assets\Code\Controls.cs" />
      <Compile Include="Assets\Code\Hideout.cs" />
      <Compile Include="Assets\Code\Items.cs" />
+     <Compile Include="Assets\Code\LocNode.cs" />
      <Compile Include="Assets\Code\Location.cs" />
      <Compile Include="Assets\Code\Map.cs" />
      <Compile Include="Assets\Code\TestCase.cs" />

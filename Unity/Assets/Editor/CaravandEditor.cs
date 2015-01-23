@@ -56,7 +56,7 @@ public class CaravandEditor : Editor {
 			}
 			EditorGUI.indentLevel -=1; 
 		}
-		_caraEdit.TravelSpeed = EditorGUILayout.IntField ("Speed", _caraEdit.TravelSpeed); 
+		_caraEdit.TravelSpeed = EditorGUILayout.FloatField ("Speed", _caraEdit.TravelSpeed); 
 
 	}
 }

@@ -42,7 +42,7 @@ public class MapControl : Controls {
 			if(_hit.collider.gameObject.layer == 8) //The ray hit a location
 			{
 				Debug.Log("clicked on a buildling"); 
-				World.Map.SelectLocation(_hit.collider.transform.parent.gameObject.GetComponent<Location>()); 
+				World.Map.SelectLocation(_hit.collider.GetComponent<Location>()); 
 			}
 		}
 	}
