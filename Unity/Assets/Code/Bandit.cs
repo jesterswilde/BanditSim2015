@@ -51,6 +51,7 @@ public class Bandit : MonoBehaviour {
 	[SerializeField]
 	int _starvingDamage = 2; 
 	int _id; 
+	public int ID { get { return _id; } }
 	bool _isAlive = true; 
 	public bool IsAlive { get { return _isAlive; } }
 	Items[] _equippedGear = {null,null,null}; 
@@ -65,6 +66,12 @@ public class Bandit : MonoBehaviour {
 	[SerializeField]
 	Actions _currentTask; //whatever they are currently assigned to do
 
+	int _itineraryInt; 
+	List<LocNode> _itinerary = new List<LocNode>(); 
+	bool _isTraveling = false; 
+	Location _destination; 
+	int _daysOut; 
+
 
 
 
@@ -73,10 +80,22 @@ public class Bandit : MonoBehaviour {
 		if (_starving) {
 			Starve(); 
 		}
-		_currentTask.NewDay (this); 
+		if(!_isTraveling && _currentTask != null){ //if they are not traveling, then they should be doing something
+			_currentTask.NewDay (this); 
+		}
+		if (_currentLocation != null) { //count down until they head back to the hideout
+			if(_currentLocation.ID != World.HideoutLoc.ID){
+				_daysOut -= 1; 
+				if(_daysOut <= 0){
+					TravelToLocation(World.HideoutLoc,0); 
+				}
+			}
+		}
 	}
 	public void NextHour(){
-		_currentTask.NextHour (this); 
+		if(!_isTraveling && _currentTask != null){
+			_currentTask.NextHour (this); 
+		}
 	}
 	void Starve(){
 		_currentHealth -= _starvingDamage; 
@@ -85,17 +104,30 @@ public class Bandit : MonoBehaviour {
 	public void AssginTask(Actions _action){
 		_currentTask = _action;
 	}
-	public void ArrivedAtLocation(Location _loc){
-		_currentLocation = _loc; 
-		_loc.BanditArrives (this); 
+	public void ArrivedAtLocation(){
+		_currentLocation = _destination; 
+		_currentLocation.BanditArrives (this); 
+		_isTraveling = false; 
+		_itineraryInt = 0; 
+		_itinerary.Clear ();
+		_destination = null;  
 	}
 	public void LeaveLocation(){
 		_currentLocation.BanditLeaves (this);
+		_currentLocation = null; 
 	}
-	public void TravelToLocation(Location _loc){ //does both leaving and arriving actions. Should work in travel time at some point
-		Debug.Log (World.Map.SelLocation); 
+	void GetItinerary(){
+		_isTraveling = true; 
+		_itinerary = CaravanRoute.GetRoute (_currentLocation, _destination); 
+		_itineraryInt = 0; 
+	}
+	public void TravelToLocation(Location _loc, int _days){ //does both leaving and arriving actions. Should work in travel time at some point
+		_destination = _loc;
+		GetItinerary (); 
 		LeaveLocation (); 
-		ArrivedAtLocation (_loc); 
+		if(_days != 0){
+			_daysOut = _days;
+		}
 	}
 	
 	public void TimeDamage(int _damage){ //damage from being exhausted, dr doesnot affect
@@ -168,7 +200,30 @@ public class Bandit : MonoBehaviour {
 
 
 
-
+	public float travelSpeed; 
+	//TRAVELING -------------------------------------------------------------------------------------------------------------
+	void Travel(){ //called for moving around
+		if (_itinerary.Count > _itineraryInt) { //if there are still places to go
+			Vector3 _direction;
+			Vector3 _destination; 
+			if(_itinerary.Count > _itineraryInt+1){
+				_destination = _itinerary[_itineraryInt+1].transform.position; 
+			}
+			else{
+				_destination = _itinerary[_itineraryInt].transform.position; 
+			}
+			_direction = (_destination - transform.position).normalized; //this is the direction
+			float _maxDistance = Vector3.Distance(transform.position, _destination); //this is the how far away it is
+			transform.position += _direction * Mathf.Clamp( travelSpeed * Time.deltaTime,0, _maxDistance); //move it towards the goal
+			if (transform.position == _destination) { //if you are close to your destination
+				transform.position = _destination;
+				_itineraryInt ++; //you have arrived at the next spot
+			}
+		}
+		else{	
+			ArrivedAtLocation(); 
+		}
+	}
 
 
 
@@ -177,11 +232,19 @@ public class Bandit : MonoBehaviour {
 		_currentLocation = World.HideoutLoc; 
 		World.HideoutLoc.BanditArrives (this); 
 		World.TheHideout.AddBandit (this); 
+		transform.position = World.HideoutLoc.transform.position; 
 	}
 	void Start(){
 		_id = World.GetID ();
 		_name = "Bandit_" + _id.ToString (); 
 		SpawnBandit (); 
 	}
+
+	void Update(){
+		if (_isTraveling) {
+			Travel(); 
+		}
+	}
+
 
 }

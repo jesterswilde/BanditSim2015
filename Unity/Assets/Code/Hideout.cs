@@ -43,7 +43,6 @@ public class Hideout : MonoBehaviour {
 	void NewBanditsArrive(){ //chance of getting a new bandit every day
 		if (Random.Range (0f, 100f) < _banditChance) {
 			World.MakeBandit(); 
-			Debug.Log("New Bandit Arrives"); 
 		}
 	}
 
@@ -80,9 +79,14 @@ public class Hideout : MonoBehaviour {
 	public void NewDay(){
 		FeedBandits (); 
 		NewBanditsArrive (); 
+		foreach (Bandit _bandit in _allBandits) {
+			_bandit.NewDay(); 
+		}
 	}	
 	public void NextHour(){
-	
+		foreach (Bandit _bandit in _allBandits) {
+			_bandit.NextHour(); 
+		}
 	}
 	void FeedBandits(){
 		float _foodConsumed = 0 ; 

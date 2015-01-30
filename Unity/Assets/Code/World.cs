@@ -127,6 +127,7 @@ public class World : MonoBehaviour {
 			_mapMode = false;
 			_inModeTransition = true;
 			mainCam.transform.parent = null; 
+			_currentControls.LeaveMode(); 
 		}
 		if (!_mapMode && _inModeTransition && _canTransition) { //transitioning to hideout mode
 			mainCam.transform.position = Vector3.Lerp(mainCam.transform.position,HideoutParent.position, Time.deltaTime * 5); 
@@ -137,6 +138,7 @@ public class World : MonoBehaviour {
 				mainCam.transform.parent = HideoutParent; 
 				_inModeTransition = false; 
 				_currentControls = _hideoutControls; 
+				_currentControls.EnterMode(); 
 				_canTransition = false; 
 				Invoke ("TransitionTimer",.5f); 
 			}
@@ -145,6 +147,7 @@ public class World : MonoBehaviour {
 			_mapMode = true;
 			_inModeTransition = true; 
 			mainCam.transform.parent = null; 
+			_currentControls.LeaveMode(); 
 		}
 		if (_mapMode && _inModeTransition && _canTransition) { //transitioning to Map mode
 			mainCam.transform.position = Vector3.Lerp(mainCam.transform.position,MapParent.position, Time.deltaTime * 5); 
@@ -154,7 +157,8 @@ public class World : MonoBehaviour {
 				mainCam.transform.rotation = MapParent.rotation; 
 				mainCam.transform.parent = MapParent; 
 				_inModeTransition = false; 
-				_currentControls = _mapControls; 
+				_currentControls = _mapControls;
+				_currentControls.EnterMode(); 
 				_canTransition = false; 
 				Invoke ("TransitionTimer",.5f); 
 			}

@@ -78,7 +78,6 @@ public class CaravanRoute : MonoBehaviour {
 		LocNode _nextLoc = endNode;
 		int _iter = 0; 
 		while (!_returnedHome ) { //keep building the route until we get home
-			Debug.Log(_nextLoc); 
 			_nextLoc = CompileRoute (_nextLoc); 
 			theRoute.Add (_nextLoc);
 			if(_nextLoc.ID == startNode.ID){

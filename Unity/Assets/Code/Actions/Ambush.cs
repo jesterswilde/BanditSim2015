@@ -26,6 +26,7 @@ public class Ambush : Actions {
 			_ambushZone = gameObject.AddComponent<AmbushZone>();
 			_ambushZone.Startup (this); 
 			BoxCollider _collider = gameObject.AddComponent<BoxCollider> (); 
+			_collider.size = new Vector3(.01f,.01f,.01f); 
 			_collider.isTrigger = true; 
 		}
 	}

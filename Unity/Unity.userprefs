@@ -1,21 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\UI\PanelUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Bandit.cs">
     <Files>
-      <File FileName="Unity.sln" Line="1" Column="1" />
-      <File FileName="Assets\Code\UI\PanelUI.cs" Line="128" Column="55" />
-      <File FileName="Assets\Code\CaravanRoute.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\World.cs" Line="86" Column="4" />
-      <File FileName="Assets\Code\Caravan.cs" Line="127" Column="9" />
-      <File FileName="Assets\Code\Location.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\LocNode.cs" Line="1" Column="1" />
-      <File FileName="k:\1GAM\Game_4\BanditSim2015\Unity\Assets\Editor\LocationEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Actions\AmbushZone.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Bandit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\UI\ActtionsUI\BanditsUI.cs" Line="1" Column="1" />
-      <File FileName="k:\1GAM\Game_4\BanditSim2015\Unity\Assets\Code\Map.cs" Line="17" Column="48" />
-      <File FileName="Assets\Code\Controls.cs" Line="45" Column="43" />
-      <File FileName="Assets\Code\Hideout.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Bandit.cs" Line="113" Column="25" />
+      <File FileName="Assets\Code\Caravan.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\CaravanRoute.cs" Line="80" Column="72" />
+      <File FileName="Assets\Editor\LocationEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Actions\Ambush.cs" Line="21" Column="21" />
+      <File FileName="Assets\Code\Actions\AmbushZone.cs" Line="14" Column="4" />
+      <File FileName="k:\1GAM\Game_4\BanditSim2015\Unity\Assets\Code\UI\PickBanditPopupUI.cs" Line="41" Column="30" />
+      <File FileName="Assets\Code\Hideout.cs" Line="88" Column="20" />
+      <File FileName="Assets\Code\World.cs" Line="21" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

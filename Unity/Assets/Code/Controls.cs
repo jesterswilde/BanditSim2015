@@ -29,6 +29,12 @@ public class Controls  {
 	protected virtual void RightClick(){
 		
 	}
+	public virtual void LeaveMode(){
+		
+	}
+	public virtual void EnterMode(){
+		
+	}
 }
 
 
@@ -41,10 +47,14 @@ public class MapControl : Controls {
 		if(Physics.Raycast(_ray,out _hit,100f)){
 			if(_hit.collider.gameObject.layer == 8) //The ray hit a location
 			{
-				Debug.Log("clicked on a buildling"); 
 				World.Map.SelectLocation(_hit.collider.GetComponent<Location>()); 
 			}
 		}
+	}
+	public override void LeaveMode ()
+	{
+		base.LeaveMode ();
+		World.PanelUI.LeaveMapMode (); 
 	}
 }
 public class HideoutControl : Controls{

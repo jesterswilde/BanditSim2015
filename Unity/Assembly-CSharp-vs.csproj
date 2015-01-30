@@ -77,7 +77,10 @@
      <Compile Include="Assets\Code\TestCase.cs" />
      <Compile Include="Assets\Code\UI\ActionsUI.cs" />
      <Compile Include="Assets\Code\UI\ActtionsUI\BanditsUI.cs" />
+     <Compile Include="Assets\Code\UI\ActtionsUI\LocationsUI.cs" />
      <Compile Include="Assets\Code\UI\PanelUI.cs" />
+     <Compile Include="Assets\Code\UI\PickBanditPopupUI.cs" />
+     <Compile Include="Assets\Code\UI\SpecificLocationUI.cs" />
      <Compile Include="Assets\Code\World.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>

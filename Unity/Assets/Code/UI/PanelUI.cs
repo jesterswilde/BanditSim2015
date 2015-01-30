@@ -38,9 +38,21 @@ public class PanelUI : MonoBehaviour {
 	
 	ActionsUI _leftActionUI; 
 	ActionsUI _rightActionsUI; 
+
+	GameObject _pickBanditPanel; 
+
+	public Object locationPrefabUI;
+	RectTransform _locUITrans; 
+
+	[SerializeField]
+	Object SelectBanditPopupPrefab; 
 	
 
-
+	//MODE STUFF --------------------------------------------------------------------------------------------------------------------
+	public void LeaveMapMode(){
+		DeselectLocation ();
+		CloseSelectBanditsPopup (); 
+	}
 
 	//INFO PANEL STUFF --------------------------------------------------------------------------------------------------------------
 	public void UpdateInfoPanel(){
@@ -118,29 +130,42 @@ public class PanelUI : MonoBehaviour {
 	}
 
 
-	public Object locationPrefabUI;
-	RectTransform _locUITrans; 
+
 	// LOCATION STUFF -----------------------------------------------------------------------------------------
-	public void SelectLocation(Location _theLoc ){
-		Debug.Log ("location selected"); 
-		DeslectLocation (); 
+	public void SelectLocation(Location _theLoc ){ //make the circle, make it a child of the canvas, put it in the right place. 
+		DeselectLocation (); 
 		GameObject _locUI = Instantiate (locationPrefabUI) as GameObject; 
 		_locUI.transform.SetParent (_canvas.transform, false);  
 		_locUITrans = _locUI.transform as RectTransform; 
 		_locUI.transform.position = World.mainCam.WorldToScreenPoint (_theLoc.transform.position); 
+		_locUI.GetComponent<SpecificLocationUI> ().Startup (_theLoc); //let the UI know what location it's over
 		RedrawLocation (); 
 	}
 	public void RedrawLocation(){
 		
 	}
-	public void DeslectLocation(){
-		if(_locUITrans != null){
+	public void DeselectLocation(){
+		if (_locUITrans != null) {
 			Destroy (_locUITrans.gameObject); 
 		}
 	}
 
 
+	//PICK BANDIT POPUP -------------------------------------------------------------------------------------
+	public void MakeBanditSelectPopup(Location _theLoc, Actions _theAction ){
+		CloseSelectBanditsPopup (); 
+		DeselectLocation (); 
 
+		GameObject _go = Instantiate (SelectBanditPopupPrefab) as GameObject; 
+		_pickBanditPanel = _go; 
+		_go.transform.SetParent (transform, false); 
+		_go.GetComponent<PickBanditPopupUI>().Startup(_theLoc,_theAction); 
+	}
+	public void CloseSelectBanditsPopup(){
+		if (_pickBanditPanel != null) {
+			Destroy(_pickBanditPanel); 
+		}
+	}
 
 
 
