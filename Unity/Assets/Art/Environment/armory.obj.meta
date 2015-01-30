@@ -63,6 +63,36 @@ ModelImporter:
     100114: woodenStrut009
     100116: woodenStrut010
     100118: woodenStrut011
+    100120: armoryFloor
+    100122: armoryWall
+    100124: entranceSupportLft003
+    100126: entranceSupportRgt003
+    100128: entranceSupportUp003
+    100130: forgeBricks
+    100132: forgeChimney
+    100134: forgeChimneyBricks
+    100136: forgeCounter
+    100138: helmetStand003
+    100140: helmetStand004
+    100142: lantern006
+    100144: longSword
+    100146: mapTable001
+    100148: mapTable002
+    100150: shieldArrow
+    100152: spear
+    100154: stool011
+    100156: stool012
+    100158: stool013
+    100160: stool014
+    100162: wallPlanks031
+    100164: wallPlanks032
+    100166: wallPlanks033
+    100168: wallPlanks034
+    100170: wallPlanks035
+    100172: weaponRack004
+    100174: woodenStrut020
+    100176: woodenStrut022
+    100178: woodenStrut023
     400000: //RootNode
     400002: baseRoom003
     400004: Box015
@@ -123,6 +153,36 @@ ModelImporter:
     400114: woodenStrut009
     400116: woodenStrut010
     400118: woodenStrut011
+    400120: armoryFloor
+    400122: armoryWall
+    400124: entranceSupportLft003
+    400126: entranceSupportRgt003
+    400128: entranceSupportUp003
+    400130: forgeBricks
+    400132: forgeChimney
+    400134: forgeChimneyBricks
+    400136: forgeCounter
+    400138: helmetStand003
+    400140: helmetStand004
+    400142: lantern006
+    400144: longSword
+    400146: mapTable001
+    400148: mapTable002
+    400150: shieldArrow
+    400152: spear
+    400154: stool011
+    400156: stool012
+    400158: stool013
+    400160: stool014
+    400162: wallPlanks031
+    400164: wallPlanks032
+    400166: wallPlanks033
+    400168: wallPlanks034
+    400170: wallPlanks035
+    400172: weaponRack004
+    400174: woodenStrut020
+    400176: woodenStrut022
+    400178: woodenStrut023
     2300000: baseRoom003
     2300002: Box015
     2300004: Box016
@@ -182,6 +242,36 @@ ModelImporter:
     2300112: woodenStrut009
     2300114: woodenStrut010
     2300116: woodenStrut011
+    2300118: armoryFloor
+    2300120: armoryWall
+    2300122: entranceSupportLft003
+    2300124: entranceSupportRgt003
+    2300126: entranceSupportUp003
+    2300128: forgeBricks
+    2300130: forgeChimney
+    2300132: forgeChimneyBricks
+    2300134: forgeCounter
+    2300136: helmetStand003
+    2300138: helmetStand004
+    2300140: lantern006
+    2300142: longSword
+    2300144: mapTable001
+    2300146: mapTable002
+    2300148: shieldArrow
+    2300150: spear
+    2300152: stool011
+    2300154: stool012
+    2300156: stool013
+    2300158: stool014
+    2300160: wallPlanks031
+    2300162: wallPlanks032
+    2300164: wallPlanks033
+    2300166: wallPlanks034
+    2300168: wallPlanks035
+    2300170: weaponRack004
+    2300172: woodenStrut020
+    2300174: woodenStrut022
+    2300176: woodenStrut023
     3300000: baseRoom003
     3300002: Box015
     3300004: Box016
@@ -241,6 +331,36 @@ ModelImporter:
     3300112: woodenStrut009
     3300114: woodenStrut010
     3300116: woodenStrut011
+    3300118: armoryFloor
+    3300120: armoryWall
+    3300122: entranceSupportLft003
+    3300124: entranceSupportRgt003
+    3300126: entranceSupportUp003
+    3300128: forgeBricks
+    3300130: forgeChimney
+    3300132: forgeChimneyBricks
+    3300134: forgeCounter
+    3300136: helmetStand003
+    3300138: helmetStand004
+    3300140: lantern006
+    3300142: longSword
+    3300144: mapTable001
+    3300146: mapTable002
+    3300148: shieldArrow
+    3300150: spear
+    3300152: stool011
+    3300154: stool012
+    3300156: stool013
+    3300158: stool014
+    3300160: wallPlanks031
+    3300162: wallPlanks032
+    3300164: wallPlanks033
+    3300166: wallPlanks034
+    3300168: wallPlanks035
+    3300170: weaponRack004
+    3300172: woodenStrut020
+    3300174: woodenStrut022
+    3300176: woodenStrut023
     4300000: baseRoom003
     4300002: Box015
     4300004: Box016
@@ -300,6 +420,36 @@ ModelImporter:
     4300112: woodenStrut009
     4300114: woodenStrut010
     4300116: woodenStrut011
+    4300118: armoryFloor
+    4300120: armoryWall
+    4300122: entranceSupportLft003
+    4300124: entranceSupportRgt003
+    4300126: entranceSupportUp003
+    4300128: forgeBricks
+    4300130: forgeChimney
+    4300132: forgeChimneyBricks
+    4300134: forgeCounter
+    4300136: helmetStand003
+    4300138: helmetStand004
+    4300140: lantern006
+    4300142: longSword
+    4300144: mapTable001
+    4300146: mapTable002
+    4300148: shieldArrow
+    4300150: spear
+    4300152: stool011
+    4300154: stool012
+    4300156: stool013
+    4300158: stool014
+    4300160: wallPlanks031
+    4300162: wallPlanks032
+    4300164: wallPlanks033
+    4300166: wallPlanks034
+    4300168: wallPlanks035
+    4300170: weaponRack004
+    4300172: woodenStrut020
+    4300174: woodenStrut022
+    4300176: woodenStrut023
     9500000: //RootNode
   materials:
     importMaterials: 1

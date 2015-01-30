@@ -114,6 +114,45 @@ ModelImporter:
     100216: woodenStrut005
     100218: woodenStrut006
     100220: woodenStrut007
+    100222: barrelShelf
+    100224: barrelShelf001
+    100226: dagger001
+    100228: entranceSupportLft002
+    100230: entranceSupportRgt002
+    100232: entranceSupportUp002
+    100234: lantern004
+    100236: lantern005
+    100238: largeSack001
+    100240: largeSack002
+    100242: mug011
+    100244: mug012
+    100246: mug013
+    100248: ropeCeiling003
+    100250: ropeCeiling004
+    100252: storageFloor
+    100254: storageWall
+    100256: trunkBottom030
+    100258: trunkBottom031
+    100260: trunkBottom032
+    100262: trunkBottom033
+    100264: trunkBottom034
+    100266: trunkBottom035
+    100268: trunkTop031
+    100270: trunkTop032
+    100272: trunkTop033
+    100274: trunkTop034
+    100276: trunkTop035
+    100278: trunkTop036
+    100280: wallPlanks024
+    100282: wallPlanks025
+    100284: wallPlanks026
+    100286: wallPlanks027
+    100288: wallPlanks028
+    100290: wallPlanks029
+    100292: woodenStrut015
+    100294: woodenStrut016
+    100296: woodenStrut017
+    100298: woodenStrut018
     400000: barrel011
     400002: barrel016
     400004: barrel019
@@ -225,6 +264,45 @@ ModelImporter:
     400216: woodenStrut005
     400218: woodenStrut006
     400220: woodenStrut007
+    400222: barrelShelf
+    400224: barrelShelf001
+    400226: dagger001
+    400228: entranceSupportLft002
+    400230: entranceSupportRgt002
+    400232: entranceSupportUp002
+    400234: lantern004
+    400236: lantern005
+    400238: largeSack001
+    400240: largeSack002
+    400242: mug011
+    400244: mug012
+    400246: mug013
+    400248: ropeCeiling003
+    400250: ropeCeiling004
+    400252: storageFloor
+    400254: storageWall
+    400256: trunkBottom030
+    400258: trunkBottom031
+    400260: trunkBottom032
+    400262: trunkBottom033
+    400264: trunkBottom034
+    400266: trunkBottom035
+    400268: trunkTop031
+    400270: trunkTop032
+    400272: trunkTop033
+    400274: trunkTop034
+    400276: trunkTop035
+    400278: trunkTop036
+    400280: wallPlanks024
+    400282: wallPlanks025
+    400284: wallPlanks026
+    400286: wallPlanks027
+    400288: wallPlanks028
+    400290: wallPlanks029
+    400292: woodenStrut015
+    400294: woodenStrut016
+    400296: woodenStrut017
+    400298: woodenStrut018
     2300000: barrel011
     2300002: barrel016
     2300004: barrel019
@@ -335,6 +413,45 @@ ModelImporter:
     2300214: woodenStrut005
     2300216: woodenStrut006
     2300218: woodenStrut007
+    2300220: barrelShelf
+    2300222: barrelShelf001
+    2300224: dagger001
+    2300226: entranceSupportLft002
+    2300228: entranceSupportRgt002
+    2300230: entranceSupportUp002
+    2300232: lantern004
+    2300234: lantern005
+    2300236: largeSack001
+    2300238: largeSack002
+    2300240: mug011
+    2300242: mug012
+    2300244: mug013
+    2300246: ropeCeiling003
+    2300248: ropeCeiling004
+    2300250: storageFloor
+    2300252: storageWall
+    2300254: trunkBottom030
+    2300256: trunkBottom031
+    2300258: trunkBottom032
+    2300260: trunkBottom033
+    2300262: trunkBottom034
+    2300264: trunkBottom035
+    2300266: trunkTop031
+    2300268: trunkTop032
+    2300270: trunkTop033
+    2300272: trunkTop034
+    2300274: trunkTop035
+    2300276: trunkTop036
+    2300278: wallPlanks024
+    2300280: wallPlanks025
+    2300282: wallPlanks026
+    2300284: wallPlanks027
+    2300286: wallPlanks028
+    2300288: wallPlanks029
+    2300290: woodenStrut015
+    2300292: woodenStrut016
+    2300294: woodenStrut017
+    2300296: woodenStrut018
     3300000: barrel011
     3300002: barrel016
     3300004: barrel019
@@ -445,6 +562,45 @@ ModelImporter:
     3300214: woodenStrut005
     3300216: woodenStrut006
     3300218: woodenStrut007
+    3300220: barrelShelf
+    3300222: barrelShelf001
+    3300224: dagger001
+    3300226: entranceSupportLft002
+    3300228: entranceSupportRgt002
+    3300230: entranceSupportUp002
+    3300232: lantern004
+    3300234: lantern005
+    3300236: largeSack001
+    3300238: largeSack002
+    3300240: mug011
+    3300242: mug012
+    3300244: mug013
+    3300246: ropeCeiling003
+    3300248: ropeCeiling004
+    3300250: storageFloor
+    3300252: storageWall
+    3300254: trunkBottom030
+    3300256: trunkBottom031
+    3300258: trunkBottom032
+    3300260: trunkBottom033
+    3300262: trunkBottom034
+    3300264: trunkBottom035
+    3300266: trunkTop031
+    3300268: trunkTop032
+    3300270: trunkTop033
+    3300272: trunkTop034
+    3300274: trunkTop035
+    3300276: trunkTop036
+    3300278: wallPlanks024
+    3300280: wallPlanks025
+    3300282: wallPlanks026
+    3300284: wallPlanks027
+    3300286: wallPlanks028
+    3300288: wallPlanks029
+    3300290: woodenStrut015
+    3300292: woodenStrut016
+    3300294: woodenStrut017
+    3300296: woodenStrut018
     4300000: barrel011
     4300002: barrel016
     4300004: barrel019
@@ -555,6 +711,45 @@ ModelImporter:
     4300214: woodenStrut005
     4300216: woodenStrut006
     4300218: woodenStrut007
+    4300220: barrelShelf
+    4300222: barrelShelf001
+    4300224: dagger001
+    4300226: entranceSupportLft002
+    4300228: entranceSupportRgt002
+    4300230: entranceSupportUp002
+    4300232: lantern004
+    4300234: lantern005
+    4300236: largeSack001
+    4300238: largeSack002
+    4300240: mug011
+    4300242: mug012
+    4300244: mug013
+    4300246: ropeCeiling003
+    4300248: ropeCeiling004
+    4300250: storageFloor
+    4300252: storageWall
+    4300254: trunkBottom030
+    4300256: trunkBottom031
+    4300258: trunkBottom032
+    4300260: trunkBottom033
+    4300262: trunkBottom034
+    4300264: trunkBottom035
+    4300266: trunkTop031
+    4300268: trunkTop032
+    4300270: trunkTop033
+    4300272: trunkTop034
+    4300274: trunkTop035
+    4300276: trunkTop036
+    4300278: wallPlanks024
+    4300280: wallPlanks025
+    4300282: wallPlanks026
+    4300284: wallPlanks027
+    4300286: wallPlanks028
+    4300288: wallPlanks029
+    4300290: woodenStrut015
+    4300292: woodenStrut016
+    4300294: woodenStrut017
+    4300296: woodenStrut018
     9500000: //RootNode
   materials:
     importMaterials: 1

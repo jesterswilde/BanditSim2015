@@ -27,6 +27,19 @@ ModelImporter:
     100042: mapTable
     100044: moneyBagz
     100046: woodenStrut001
+    100048: coin007
+    100050: coin008
+    100052: coin009
+    100054: coin010
+    100056: coin011
+    100058: coin012
+    100060: dagger
+    100062: entranceSupportLft
+    100064: entranceSupportRgt
+    100066: entranceSupportUp
+    100068: mapFloor
+    100070: mapWalls
+    100072: woodBox
     400000: barrel
     400002: bedroll
     400004: Box003
@@ -51,6 +64,19 @@ ModelImporter:
     400042: mapTable
     400044: moneyBagz
     400046: woodenStrut001
+    400048: coin007
+    400050: coin008
+    400052: coin009
+    400054: coin010
+    400056: coin011
+    400058: coin012
+    400060: dagger
+    400062: entranceSupportLft
+    400064: entranceSupportRgt
+    400066: entranceSupportUp
+    400068: mapFloor
+    400070: mapWalls
+    400072: woodBox
     2300000: barrel
     2300002: bedroll
     2300004: Box003
@@ -74,6 +100,19 @@ ModelImporter:
     2300040: mapTable
     2300042: moneyBagz
     2300044: woodenStrut001
+    2300046: coin007
+    2300048: coin008
+    2300050: coin009
+    2300052: coin010
+    2300054: coin011
+    2300056: coin012
+    2300058: dagger
+    2300060: entranceSupportLft
+    2300062: entranceSupportRgt
+    2300064: entranceSupportUp
+    2300066: mapFloor
+    2300068: mapWalls
+    2300070: woodBox
     3300000: barrel
     3300002: bedroll
     3300004: Box003
@@ -97,6 +136,19 @@ ModelImporter:
     3300040: mapTable
     3300042: moneyBagz
     3300044: woodenStrut001
+    3300046: coin007
+    3300048: coin008
+    3300050: coin009
+    3300052: coin010
+    3300054: coin011
+    3300056: coin012
+    3300058: dagger
+    3300060: entranceSupportLft
+    3300062: entranceSupportRgt
+    3300064: entranceSupportUp
+    3300066: mapFloor
+    3300068: mapWalls
+    3300070: woodBox
     4300000: barrel
     4300002: bedroll
     4300004: Box003
@@ -120,6 +172,19 @@ ModelImporter:
     4300040: mapTable
     4300042: moneyBagz
     4300044: woodenStrut001
+    4300046: coin007
+    4300048: coin008
+    4300050: coin009
+    4300052: coin010
+    4300054: coin011
+    4300056: coin012
+    4300058: dagger
+    4300060: entranceSupportLft
+    4300062: entranceSupportRgt
+    4300064: entranceSupportUp
+    4300066: mapFloor
+    4300068: mapWalls
+    4300070: woodBox
     9500000: //RootNode
   materials:
     importMaterials: 1
