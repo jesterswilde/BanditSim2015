@@ -58,6 +58,7 @@
      <Compile Include="Assets\Code\Building.cs" />
      <Compile Include="Assets\Code\BuildingManager.cs" />
      <Compile Include="Assets\Code\BuildingUnit.cs" />
+     <Compile Include="Assets\Code\Buildings\BD_Barracks.cs" />
      <Compile Include="Assets\Code\Buildings\BD_Maproom.cs" />
      <Compile Include="Assets\Code\Caravan.cs" />
      <Compile Include="Assets\Code\CaravanRoute.cs" />

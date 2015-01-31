@@ -91,6 +91,7 @@ public class Hideout : MonoBehaviour {
 		foreach (Bandit _bandit in _tempBanditList) {
 			_bandit.NewDay(); 
 		}
+		SetDirty (); 
 	}	
 	public void NextHour(){
 		foreach (Bandit _bandit in _allBandits) {
@@ -120,13 +121,13 @@ public class Hideout : MonoBehaviour {
 				_theBandit.Starving = true; 
 			}
 		}
-		SetDirty (); 
 	}
 	int CalcDaysOfFood(){
 		float _dailyFood = 0; 
 		foreach (Bandit _theBandit in _allBandits) {
 			_dailyFood += _theBandit.FoodConsumption; 
 		}
+		Debug.Log ("Food Consumed " + _dailyFood + " | Total food " + _totalFood); 
 		if(_dailyFood != 0){
 			return _totalFood /(int)_dailyFood; 
 		}
@@ -143,6 +144,7 @@ public class Hideout : MonoBehaviour {
 		else{
 			Debug.Log("THe boss was displeased"); 
 		}
+		SetDirty (); 
 	}
 	public bool AlreadyKnowAboutRoute(CaravanRoute _theRoute){
 		foreach (CaravanRoute _route in _knownRoutes) {
@@ -154,6 +156,7 @@ public class Hideout : MonoBehaviour {
 	}
 	public void AddFood(int _foodHaul){
 		_totalFood += _foodHaul; 
+		SetDirty (); 
 	}
 	void CapGoods(){
 		if (_totalFood > _foodCap) {
@@ -168,12 +171,13 @@ public class Hideout : MonoBehaviour {
 	//BOOK KEEPING ----------------------------------------------------------------------------------------------------------
 	void SetDirty(){ //When set dirty, everything will recalculate, such as howlong food will last. 
 		//gets how many days of food you have
+		CalcDaysOfFood (); 
 		if (_totalFood <= 0) {
 			_hasFood = false; 		
 		}
 		else{
 			_hasFood = true; 
 		}
-		World.PanelUI.ReloadPanels (); 
+		World.PanelUI.RefreshUI (); 
 	}
 }

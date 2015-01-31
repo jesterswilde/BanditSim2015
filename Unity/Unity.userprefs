@@ -1,15 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\UI\PanelUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Buildings\BD_Barracks.cs">
     <Files>
-      <File FileName="Assets\Code\CaravanRoute.cs" Line="85" Column="58" />
-      <File FileName="Assets\Code\Bandit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Editor\LocationEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Actions\Ambush.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Actions.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\UI\SpecificLocationUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Map.cs" Line="8" Column="40" />
-      <File FileName="Assets\Code\UI\PanelUI.cs" Line="112" Column="16" />
+      <File FileName="Assets\Code\Building.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Buildings\BD_Barracks.cs" Line="9" Column="18" />
+      <File FileName="Assets\Code\Buildings\BD_Maproom.cs" Line="6" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

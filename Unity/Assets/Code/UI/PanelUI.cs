@@ -183,6 +183,7 @@ public class PanelUI : MonoBehaviour {
 		_map = World.Map; 
 		GetPanelComponents (); 
 		_canvas = GetComponent<Canvas> ();
+		UpdateInfoPanel (); 
 	}
 
 	/*

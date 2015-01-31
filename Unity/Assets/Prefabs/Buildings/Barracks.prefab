@@ -1874,7 +1874,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 405446}
-  - 114: {fileID: 11405642}
+  - 114: {fileID: 11466190}
   m_Layer: 0
   m_Name: Barracks
   m_TagString: Untagged
@@ -6306,7 +6306,7 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
---- !u!114 &11405642
+--- !u!114 &11466190
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -6314,7 +6314,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 105446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef2a681a0051ffa4ea1206249cc83f55, type: 3}
+  m_Script: {fileID: 11500000, guid: ab7fa49cf7087bd4db1788b8edb2bd2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 0

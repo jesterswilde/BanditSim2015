@@ -35,7 +35,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 147746}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6cb97adbf967ec4f99122e7d42ba8cd, type: 3}
   m_Name: 
@@ -60,6 +60,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roadMaterial: {fileID: 2100000, guid: 9f2fa241ca4c3264aa2b95394080fd85, type: 2}
+  selectedRoadMaterial: {fileID: 2100000, guid: 1b6588ef1eaae4447b24f8d5de2f2bee,
+    type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
