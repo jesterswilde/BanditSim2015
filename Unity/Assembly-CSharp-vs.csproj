@@ -78,6 +78,7 @@
      <Compile Include="Assets\Code\UI\ActionsUI.cs" />
      <Compile Include="Assets\Code\UI\ActtionsUI\BanditsUI.cs" />
      <Compile Include="Assets\Code\UI\ActtionsUI\LocationsUI.cs" />
+     <Compile Include="Assets\Code\UI\ActtionsUI\RoutesUI.cs" />
      <Compile Include="Assets\Code\UI\PanelUI.cs" />
      <Compile Include="Assets\Code\UI\PickBanditPopupUI.cs" />
      <Compile Include="Assets\Code\UI\SpecificLocationUI.cs" />

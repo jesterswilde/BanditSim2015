@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
+using System; 
 using System.Collections;
 using System.Collections.Generic; 
 
-public class Location : MonoBehaviour {
+public class Location : MonoBehaviour{
+
+
 
 	/* Locations are mainly accesed through the map. The map representation and the actual place are both counted in this component
 	 * This is the parent class. Locations will be things like roads, towns, as well as the hideout. 
 	 * 
 	 * This script has a specfic editor script for handling inspect shinanengans That is also why all the fields have public getters and setters and are serialized
 	 * */
+	
 
 	[SerializeField]
 	string _displayName; //what hte player sees for this location
@@ -47,13 +51,13 @@ public class Location : MonoBehaviour {
 	public int ID { get { return _id; } }
 
 	//route and road variable initialization
-	public float routeDistance; //how far to this point in the route this is over-written every time a route is calc
-	public bool routeCalculated;  //have we checked this route yet. Also recalculated every time
-	Location _previousLocation; //the last place the caravan as at
-	public Location PreviousLoc { get { return _previousLocation; } set { _previousLocation = value; } } 
+	//public float routeDistance; //how far to this point in the route this is over-written every time a route is calc
+	//public bool routeCalculated;  //have we checked this route yet. Also recalculated every time
+	//Location _previousLocation; //the last place the caravan as at
+	//public Location PreviousLoc { get { return _previousLocation; } set { _previousLocation = value; } } 
 	
-	float _roadLength; //how long is the road. Currently it's as teh crow flies from start to end.
-	public float RoadLength { get { return _roadLength; } }
+	//float _roadLength; //how long is the road. Currently it's as teh crow flies from start to end.
+	//public float RoadLength { get { return _roadLength; } }
 	[SerializeField]
 	int _numConnectedRoads; //how many roads does this point connect to
 	public int numConnectedRoads { get { return _numConnectedRoads; } set { _numConnectedRoads = value; } }
@@ -66,10 +70,12 @@ public class Location : MonoBehaviour {
 	public List<Location> ConnectedCities { get { return _connectedCities; } }
 	List<float> _connectedCitiesDistance = new List<float>();  //how far along the road each of these cities are. 
 	public List<float> ConnectedCitiesDistance { get { return _connectedCitiesDistance; } }
-	Vector3 _roadDirection; //direction from start of the road to the end. This will also have to be retooled when roads can curve
-	LineRenderer _lineRender; 
+	//Vector3 _roadDirection; //direction from start of the road to the end. This will also have to be retooled when roads can curve
+	//LineRenderer _lineRender; 
 
 
+	List<CaravanRoute> _passingRoutes = new List<CaravanRoute>(); 
+	public List<CaravanRoute> PassingRoutes { get { return _passingRoutes; } }
 
 
 	public virtual void BanditArrives(Bandit _theBandit){ //just deals with bandits showing up and leaving
@@ -200,6 +206,14 @@ public class Location : MonoBehaviour {
 		StartGame (); 
 		MakeRoadPoints (); 
 	}
+
+	public void AddCaravanRoute(CaravanRoute _theRoute){
+		_passingRoutes.Add (_theRoute); 
+		_passingRoutes.Sort (); 
+	}
+
+
+
 	/*
 	public void ConnectRoadsAndCities(){ //this is called after. Think of it like 'start' and 'awake'
 		AttachToRoads (); 
@@ -295,8 +309,8 @@ public class Location : MonoBehaviour {
 
 	void StartGame(){
 		foreach (Actions _currentAction in _localActions) {
-			_currentAction.StartGame(this); 
-
+			if(_currentAction != null) _currentAction.StartGame(this); 
+			else Debug.Log("error at location " + name); 
 		}
 	}
 

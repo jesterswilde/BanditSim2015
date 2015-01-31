@@ -47,9 +47,6 @@ public class LocationEditor : Editor {
 			EditorGUI.indentLevel ++; 
 			_locEdit.IsRoad =  EditorGUILayout.Toggle("Is This A Road?" ,_locEdit.IsRoad);
 			if (_locEdit.IsRoad) { //if this is a road
-				if(_locEdit.RoadLength != 0){
-					EditorGUILayout.LabelField ("Road Length: " + _locEdit.RoadLength.ToString()); 
-				}
 				_locEdit.NumRoadPoints = EditorGUILayout.IntField("Number of Points", _locEdit.NumRoadPoints); 
 				EditorGUI.indentLevel ++; 
 				showRoadPoints = EditorGUILayout.Foldout(showRoadPoints,"The Points"); 
@@ -60,7 +57,6 @@ public class LocationEditor : Editor {
 				} 
 				EditorGUI.indentLevel -= 1; 
 			}
-			EditorGUILayout.LabelField(_locEdit.routeDistance.ToString());
 			EditorGUI.indentLevel -= 1; 
 		}
 
@@ -132,6 +128,21 @@ public class LocationEditor : Editor {
 			else{
 				GameObject _temGO = new GameObject(); 
 				_locEdit.LocalActions[i] =_temGO.AddComponent<Scavenge> ();
+				_locEdit.LocalActions[i].Startup(_locEdit); 
+			}
+		}
+		if (_locEdit.Actions [_locEdit.ChoiceList [i]] == "Gather Intel") { //gatherIntel ---------------------------------
+			if(_locEdit.LocalActions[i] != null){
+				if(!_locEdit.LocalActions[i].IsSame("GatherIntel")){
+					_locEdit.LocalActions[i].Cleanup(); 
+					GameObject _temGO = new GameObject(); 
+					_locEdit.LocalActions[i] =_temGO.AddComponent<GatherIntel> ();
+					_locEdit.LocalActions[i].Startup(_locEdit); 
+				}
+			}
+			else{
+				GameObject _temGO = new GameObject(); 
+				_locEdit.LocalActions[i] =_temGO.AddComponent<GatherIntel> ();
 				_locEdit.LocalActions[i].Startup(_locEdit); 
 			}
 		}

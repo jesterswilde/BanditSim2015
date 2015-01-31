@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Map : MonoBehaviour {
 
 	public Material roadMaterial; 
+	public Material selectedRoadMaterial; 
 
 	Location _selLocation; 
 	public Location SelLocation { get {return _selLocation;}}

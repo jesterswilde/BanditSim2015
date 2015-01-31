@@ -23,4 +23,13 @@ public class Scavenge : Actions {
 		gameObject.name = "ScavengeAction"; 
 		_actionName = "Scavenge"; 
 	}
+
+	public override void NewDay (Bandit _bandit)
+	{
+		base.NewDay (_bandit);
+		ScavengeForFood (_bandit); 
+	}
+	void ScavengeForFood(Bandit _bandit){
+		_bandit.GatheredFood( _bandit.Crafty + _bandit.DieRoll () ); 
+	}
 }

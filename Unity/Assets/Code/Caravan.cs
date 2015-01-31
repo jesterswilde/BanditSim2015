@@ -30,6 +30,10 @@ public class Caravan : MonoBehaviour {
 	public int BanditsMax { get { return _banditsMax; } set { _banditsMax = value; } }
 
 	[SerializeField]
+	int _dc; 
+	public int DC{ get { return _dc; } }
+
+	[SerializeField]
 	int _numGuard = 1; //how many differetn types of guards there are
 	public int NumGuard { get { return _numGuard; } set { _numGuard = value; } }
 	[SerializeField]

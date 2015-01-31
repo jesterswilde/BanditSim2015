@@ -1,8 +1,9 @@
 using UnityEngine;
+using System; 
 using System.Collections;
 using System.Collections.Generic;
 
-public class CaravanRoute : MonoBehaviour {
+public class CaravanRoute : MonoBehaviour, IComparable<CaravanRoute> {
 
 	public Location startCity; 
 	public Location endCity;
@@ -13,11 +14,14 @@ public class CaravanRoute : MonoBehaviour {
 	[SerializeField]
 	float _speed; 
 	float _totalRouteDistance; 
-	public Object caravanPrefab; 
+	public UnityEngine.Object caravanPrefab; 
 
 	[SerializeField]
 	int _dc; 
 	public int DC{ get { return _dc; } }
+
+	int _id; 
+	public int ID { get { return _id; } }
 
 	List<LocNode> _theRoute = new List<LocNode> (); 
 	List<float> _arrivalTimes = new List<float>(); 
@@ -57,6 +61,34 @@ public class CaravanRoute : MonoBehaviour {
 		}
 		return _distance; 
 	}
+
+	public int CompareTo(CaravanRoute _otherRoute){
+		if (_otherRoute.DC > _dc)
+						return -1; 
+		if (_otherRoute.DC == _dc)
+						return 0; 
+		return 1; 
+	}
+
+	//UI SHiznit ------------------------------------------------------------------------------------------
+	bool _currentState = false; 
+
+
+	public void HighlightRoute(bool _onOff){
+		if(_currentState != _onOff){
+			_currentState = !_currentState; 
+			for (int i = 0; i < _theRoute.Count; i++) {
+				if(i > 0 ){
+					_theRoute[i].HighlightRoad(_theRoute[i-1],_onOff); 
+				}
+				if(i < _theRoute.Count-1){
+					_theRoute[i].HighlightRoad(_theRoute[i+1],_onOff);  
+				}
+			}
+		}
+	}
+
+
 
 	//Route pathfinding -------------------------------------------------------------------------------------
 
@@ -160,6 +192,10 @@ public class CaravanRoute : MonoBehaviour {
 			GameObject _theCaravan = Instantiate (caravanPrefab) as GameObject; 
 			_theCaravan.GetComponent<Caravan> ().SpawnCaravan (_theRoute, _speed); 
 		}
+	}
+
+	void Start(){
+		_id = World.GetID (); 
 	}
 	/*
 	 * 

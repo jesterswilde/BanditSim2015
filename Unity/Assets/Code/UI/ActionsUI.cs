@@ -12,8 +12,10 @@ public class ActionsUI : MonoBehaviour {
 	public virtual void TurnOff(){
 		mainPanel.SetActive (false); 
 		_active = false;
+		Debug.Log ("Turning off "+ name); 
 	}
 	protected virtual void TurnOn(){
+		Debug.Log ("Turning on " + name); 
 		mainPanel.SetActive (true); 
 		Reload (); 
 	}
@@ -28,6 +30,9 @@ public class ActionsUI : MonoBehaviour {
 	}
 	public virtual void Reload(){
 		
+	}
+	public virtual void CloseMenu(){
+
 	}
 
 	protected GameObject MakeButton(string _textName, Color _bgColor, Transform _parent){//generic buttonMaker

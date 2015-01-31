@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic; 
 
@@ -17,11 +18,11 @@ public class LocNode : MonoBehaviour {
 	
 	List<LocNode> _connectedLocations = new List<LocNode> ();
 	public List<LocNode> ConnectedNodes { get { return _connectedLocations; } }
+	List<LineRenderer> _drawnRoads = new List<LineRenderer> (); 
 	List<float> _locDistance = new List<float> (); 
 	public List<float> LocDistance { get { return _locDistance; } }
+	
 
-	[SerializeField]
-	List<CaravanRoute> _passingRoutes = new List<CaravanRoute>(); 
 	
 
 	public void Startup(Location _theLoc){
@@ -45,25 +46,53 @@ public class LocNode : MonoBehaviour {
 
 	public void DrawRoads(){ //makes the visual representatino of the road
 		foreach (LocNode _node in _connectedLocations) {
-			if(_id > _node.ID){
+			if(_id > _node.ID){ //to only draw the road once, only the one with the highest ID# draws it.
 				GameObject _renderGO = new GameObject(); 
 				_renderGO.transform.position = transform.position; 
 				_renderGO.transform.parent = this.transform; 
 				_renderGO.name = "DrawRoad"; 
 				LineRenderer _line = _renderGO.AddComponent<LineRenderer>(); 
+				_drawnRoads.Add(_line); 
 				_line.SetVertexCount(2); 
 				_line.SetPosition(0, _renderGO.transform.position); 
 				_line.SetPosition(1, _node.transform.position); 
 				_line.SetWidth(.01f,.01f); 
 				_line.material = World.Map.roadMaterial; 
 			}
+			else{
+				_drawnRoads.Add(null);  //this is just so the lists line up properly
+			}
 		}
 	}
 
 	public void KnowAboutRoute(CaravanRoute _route){
-		_passingRoutes.Add (_route); 
+		if (_loc != null) {
+			_loc.AddCaravanRoute(_route); 		
+		}
 	}
-
+	public void HighlightRoad(LocNode _theNode, bool _turnOn){ //used to highligh the section of the road
+		int i = WhichRoad (_theNode); 
+		if (i >= 0) { //if you could find the road
+			if(_turnOn){
+				if(_drawnRoads[i] != null){
+					_drawnRoads[i].material = World.Map.selectedRoadMaterial; 
+				}
+			}
+			else{
+				if(_drawnRoads[i] != null){
+					_drawnRoads[i].material = World.Map.roadMaterial; 
+				}
+			}
+		}
+	}
+	int WhichRoad(LocNode _theNode){
+		for (int i = 0; i < _connectedLocations.Count; i++) {
+			if(_theNode.ID == _connectedLocations[i].ID){
+				return i; 
+			}
+		}
+		return -1; 
+	}
 	public bool IsLocation(int _theID){
 		if (_loc.ID == _theID)
 						return true; 
@@ -73,5 +102,6 @@ public class LocNode : MonoBehaviour {
 	public void GetID(){
 		_id = World.GetID (); 
 	}
+
 
 }

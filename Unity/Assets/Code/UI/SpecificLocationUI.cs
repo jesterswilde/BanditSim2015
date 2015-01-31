@@ -23,7 +23,6 @@ public class SpecificLocationUI : MonoBehaviour {
 		}
 	}
 	GameObject MakeActionButton(string _textName,  int _index){//generic buttonMaker
-		Debug.Log ("making a button"); 
 		GameObject _buttonParentGO = Instantiate (_actionButtonOBJ) as GameObject; 
 		_buttonParentGO.transform.SetParent(_buttonParent); 
 		_buttonParentGO.name = _textName; 

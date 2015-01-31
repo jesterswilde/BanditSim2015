@@ -60,7 +60,6 @@ public class BanditsUI : ActionsUI {
 		}
 	}
 	void ClearAll(){
-		Debug.Log (World.TheHideout.AllBandits.Count + " : " + _banditButtons.Count); 
 		for(int i =0 ; i < _banditButtons.Count; i++) {
 			Destroy(_banditButtons[i]);
 		}

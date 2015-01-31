@@ -29,12 +29,20 @@ public class Hideout : MonoBehaviour {
 	[SerializeField]
 	float _banditChance = 1; 
 
+	[SerializeField]
+	List<CaravanRoute> _knownRoutes = new List<CaravanRoute> (); 
+	public List<CaravanRoute> KnownRoutes { get { return _knownRoutes; } }
+
 
 
 	//ADDING BANDITS ----------------------------------------------------------------------------------------
-	public void AddBandit(Bandit _newBandit){
-		_allBandits.Add (_newBandit); 
-		SetDirty (); 
+	public bool HireBandit(Bandit _newBandit){
+		if(_allBandits.Count < _banditCap){
+			_allBandits.Add (_newBandit); 
+			SetDirty (); 
+			return true; 
+		}
+		return false;
 	}
 	public void RemoveBandit(Bandit _deadBandit){
 		_allBandits.Remove (_deadBandit); 
@@ -79,7 +87,8 @@ public class Hideout : MonoBehaviour {
 	public void NewDay(){
 		FeedBandits (); 
 		NewBanditsArrive (); 
-		foreach (Bandit _bandit in _allBandits) {
+		List<Bandit> _tempBanditList = _allBandits; 
+		foreach (Bandit _bandit in _tempBanditList) {
 			_bandit.NewDay(); 
 		}
 	}	
@@ -122,6 +131,37 @@ public class Hideout : MonoBehaviour {
 			return _totalFood /(int)_dailyFood; 
 		}
 		return 9999; 
+	}
+
+
+	//BANIDTS BRINGING BACK THE GOODS ====================================================================================
+	public void LearAboutRoute(CaravanRoute _theRoute){
+		if (!AlreadyKnowAboutRoute(_theRoute)) {
+			Debug.Log("The boss was happy with this new route"); 
+			_knownRoutes.Add(_theRoute); 
+		}
+		else{
+			Debug.Log("THe boss was displeased"); 
+		}
+	}
+	public bool AlreadyKnowAboutRoute(CaravanRoute _theRoute){
+		foreach (CaravanRoute _route in _knownRoutes) {
+			if (_route.ID == _theRoute.ID){
+				return true; 
+			}
+		}
+		return false; 
+	}
+	public void AddFood(int _foodHaul){
+		_totalFood += _foodHaul; 
+	}
+	void CapGoods(){
+		if (_totalFood > _foodCap) {
+			_totalFood = _foodCap;
+		}
+		if (_money > _moneyCap) {
+			_money = _moneyCap; 	
+		}
 	}
 
 

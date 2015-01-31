@@ -52,6 +52,9 @@ public class PanelUI : MonoBehaviour {
 	public void LeaveMapMode(){
 		DeselectLocation ();
 		CloseSelectBanditsPopup (); 
+		if(_leftActionUI != null){
+			_leftActionUI.CloseMenu ();
+		}
 	}
 
 	//INFO PANEL STUFF --------------------------------------------------------------------------------------------------------------
@@ -98,33 +101,36 @@ public class PanelUI : MonoBehaviour {
 		if (i == 0) { //left Panel
 			_leftPanelAnim.SetBool ("Open", !_leftPanelAnim.GetBool("Open")); //toggles the visible state of left panel
 			if(!_leftPanelAnim.GetBool("Open")){ //unload the Active components if closed
+				_leftActionUI.CloseMenu(); 
 				_leftActionUI = null; 
 			}
 		}
 		if (i == 1) { //right Panel
 			_rightPanelAnim.SetBool("Open", !_rightPanelAnim.GetBool("Open")); 
 			if(!_rightPanelAnim.GetBool("Open")){
-				_leftActionUI = null; 
+				_rightActionsUI = null; 
 			}
 		}
 	}
 	// List order for left panel 
 	//		-0 Bandits
-	public void BanditsButton(){
-		_leftActionUI = _leftPanelActions[0]; 
+	//		-1 Route info
+	public void LeftInfoPanelPicker(int i){
+		_leftActionUI = _leftPanelActions[i]; 
 		_leftActionUI.Pressed();
-		PressedSideButton (0); 
+		PressedSideButton (0,i); 
 	}
-	void PressedSideButton(int i){
-		if (i == 0) {
+	void PressedSideButton(int side, int i){
+		if (side == 0) { //left side
 			if (!_leftActionUI.Active && _leftPanelAnim.GetBool("Open") ||
 			    _leftActionUI.Active && !_leftPanelAnim.GetBool("Open") ) {
-				TogglePanel(i);
+				TogglePanel(side);
 			}
-		}
-		for(int p = 0; p < _leftPanelActions.Count; p++){
-			if(p != i){ //if this is not the active button
-				_leftPanelActions[p].TurnOff(); 
+			for(int p = 0; p < _leftPanelActions.Count; p++){
+				if(p != i){ //if this is not the active button
+					_leftPanelActions[p].TurnOff(); 
+					_leftPanelActions[p].CloseMenu(); 
+				}
 			}
 		}
 	}

@@ -101,12 +101,13 @@ MonoBehaviour:
   _health: 20
   _currentHealth: 20
   _DR: 0
+  _dieRoll: 20
   _foodConsumption: 1
   _starvingDamage: 2
   _guardTarget: {fileID: 0}
   _currentLocation: {fileID: 0}
   _currentTask: {fileID: 0}
-  travelSpeed: .0500000007
+  _travelSpeed: .100000001
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

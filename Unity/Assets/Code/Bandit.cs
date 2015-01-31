@@ -23,6 +23,9 @@ public class Bandit : MonoBehaviour {
 	float _DR = 0; 
 	public int DR { get { return (int)_DR; } }
 
+	[SerializeField] 
+	int _dieRoll = 20; 
+
 	int _level = 0; 
 	public int Level { get { return _level; } }
 	int _xp = 0; 
@@ -58,7 +61,6 @@ public class Bandit : MonoBehaviour {
 	Items[] EquippedGear { get { return _equippedGear; } }
 
 	[SerializeField]
-
 	CaravandGuard _guardTarget; 
 
 	[SerializeField]
@@ -70,8 +72,15 @@ public class Bandit : MonoBehaviour {
 	List<LocNode> _itinerary = new List<LocNode>(); 
 	bool _isTraveling = false; 
 	Location _destination; 
-	int _daysOut; 
+	int _daysOut; //how many days they have left to be at a location
+	[SerializeField]
+	float _travelSpeed;
 
+	float _currentSkilBase; //for cumulative checks, this is the number that gets incremented
+
+
+	List<CaravanRoute>_knownRoutes = new List<CaravanRoute> (); 
+	int _foodHaul = 0; 
 
 
 
@@ -104,31 +113,7 @@ public class Bandit : MonoBehaviour {
 	public void AssginTask(Actions _action){
 		_currentTask = _action;
 	}
-	public void ArrivedAtLocation(){
-		_currentLocation = _destination; 
-		_currentLocation.BanditArrives (this); 
-		_isTraveling = false; 
-		_itineraryInt = 0; 
-		_itinerary.Clear ();
-		_destination = null;  
-	}
-	public void LeaveLocation(){
-		_currentLocation.BanditLeaves (this);
-		_currentLocation = null; 
-	}
-	void GetItinerary(){
-		_isTraveling = true; 
-		_itinerary = CaravanRoute.GetRoute (_currentLocation, _destination); 
-		_itineraryInt = 0; 
-	}
-	public void TravelToLocation(Location _loc, int _days){ //does both leaving and arriving actions. Should work in travel time at some point
-		_destination = _loc;
-		GetItinerary (); 
-		LeaveLocation (); 
-		if(_days != 0){
-			_daysOut = _days;
-		}
-	}
+
 	
 	public void TimeDamage(int _damage){ //damage from being exhausted, dr doesnot affect
 		_currentHealth -= _damage; 
@@ -143,7 +128,46 @@ public class Bandit : MonoBehaviour {
 		}
 	}
 
-
+	//SKILLS and shit related to skiiiiiiiiiiiiiiillz ----------------------------------------------------------------------
+	public int DieRoll(){
+		return Random.Range (0, _dieRoll + 1); 
+	}
+	public int UseCompoundingSkill(float _skill){
+		_currentSkilBase += _skill; 
+		return (int)_currentSkilBase + DieRoll (); 
+	}
+	void ReturnedToHideout(){
+		UnloadRouteInfo (); 
+		UnloadFood (); 
+	}
+	public void LearnAboutRoute(CaravanRoute _theRoute){ // called by gather intel
+		if (!AlredyKnowAboutRoute(_theRoute)) {
+			_knownRoutes.Add(_theRoute); 
+			Debug.Log("Learned About A Route"); 
+		}
+	}
+	public bool AlredyKnowAboutRoute(CaravanRoute _theRoute){               //check to see if you already know about the route, if you don't put it in the list
+		foreach (CaravanRoute _route in _knownRoutes) {    //the list is cleared whenever the bandit returns to the hideout. 
+			if(_theRoute.ID == _route.ID){
+				return true; 
+			}
+		}
+		return false; 
+	}
+	void UnloadRouteInfo(){
+		Debug.Log ("Informed durr boss about " + _knownRoutes.Count + " route(s)"); 
+		foreach (CaravanRoute _route in _knownRoutes) {
+			World.TheHideout.LearAboutRoute(_route); 	
+		}
+		_knownRoutes.Clear (); 
+	}
+	public void GatheredFood(int _food){
+		_foodHaul += _food; 
+	}
+	void UnloadFood(){
+		World.TheHideout.AddFood (_foodHaul);
+		_foodHaul = 0; 
+	}
 
 
 	//COMBAT and death, they go hand n hand ya know ----------------------------------------------------------------------
@@ -177,7 +201,9 @@ public class Bandit : MonoBehaviour {
 	public void Die(){
 		Debug.Log (_name + " Has died"); 
 		World.TheHideout.RemoveBandit (this); 
-		_currentLocation.BanditLeaves (this); 
+		if (_currentLocation != null){
+			_currentLocation.BanditLeaves (this);
+		}
 		_isAlive = false; 
 		Destroy (this.gameObject); 
 	}
@@ -200,7 +226,10 @@ public class Bandit : MonoBehaviour {
 
 
 
-	public float travelSpeed; 
+
+
+
+
 	//TRAVELING -------------------------------------------------------------------------------------------------------------
 	void Travel(){ //called for moving around
 		if (_itinerary.Count > _itineraryInt) { //if there are still places to go
@@ -214,7 +243,7 @@ public class Bandit : MonoBehaviour {
 			}
 			_direction = (_destination - transform.position).normalized; //this is the direction
 			float _maxDistance = Vector3.Distance(transform.position, _destination); //this is the how far away it is
-			transform.position += _direction * Mathf.Clamp( travelSpeed * Time.deltaTime,0, _maxDistance); //move it towards the goal
+			transform.position += _direction * Mathf.Clamp( _travelSpeed * Time.deltaTime,0, _maxDistance); //move it towards the goal
 			if (transform.position == _destination) { //if you are close to your destination
 				transform.position = _destination;
 				_itineraryInt ++; //you have arrived at the next spot
@@ -224,15 +253,49 @@ public class Bandit : MonoBehaviour {
 			ArrivedAtLocation(); 
 		}
 	}
+	public void ArrivedAtLocation(){ 
+		_currentLocation = _destination; 
+		_currentLocation.BanditArrives (this); 
+		_isTraveling = false; 
+		_itineraryInt = 0; 
+		_itinerary.Clear ();
+		_destination = null;  
+		if (_currentLocation.ID == World.HideoutLoc.ID) {
+			ReturnedToHideout(); 
+		}
+		_currentSkilBase = 0; 
+	}
+	public void LeaveLocation(){
+		_currentLocation.BanditLeaves (this);
+		_currentLocation = null; 
+		_currentTask = null; 
+	}
+	void GetItinerary(){ //gets the route the bandit will need to travel
+		_isTraveling = true; 
+		_itinerary = CaravanRoute.GetRoute (_currentLocation, _destination); 
+		_itineraryInt = 0; 
+	}
+	public void TravelToLocation(Location _loc, int _days){ //The action called to get a bandit to go to a place, including back home
+		_destination = _loc;
+		GetItinerary (); 
+		LeaveLocation (); 
+		if(_days != 0){
+			_daysOut = _days;
+		}
+	}
 
 
 
 	//STARTUP, everything has got to start somewhere -------------------------------------------------------------------
-	void SpawnBandit(){
-		_currentLocation = World.HideoutLoc; 
-		World.HideoutLoc.BanditArrives (this); 
-		World.TheHideout.AddBandit (this); 
-		transform.position = World.HideoutLoc.transform.position; 
+	void SpawnBandit(){ //every bandit starts at the hideout, also tells the world that the bandits exist. 
+		if(World.TheHideout.HireBandit (this)) {
+			_currentLocation = World.HideoutLoc; 
+			World.HideoutLoc.BanditArrives (this);
+			transform.position = World.HideoutLoc.transform.position; 
+		}
+		else {
+			Destroy (this.gameObject); 
+		}
 	}
 	void Start(){
 		_id = World.GetID ();
