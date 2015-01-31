@@ -153,6 +153,8 @@ ModelImporter:
     100294: woodenStrut016
     100296: woodenStrut017
     100298: woodenStrut018
+    100300: barrelShelf002
+    100302: barrelShelf003
     400000: barrel011
     400002: barrel016
     400004: barrel019
@@ -303,6 +305,8 @@ ModelImporter:
     400294: woodenStrut016
     400296: woodenStrut017
     400298: woodenStrut018
+    400300: barrelShelf002
+    400302: barrelShelf003
     2300000: barrel011
     2300002: barrel016
     2300004: barrel019
@@ -452,6 +456,8 @@ ModelImporter:
     2300292: woodenStrut016
     2300294: woodenStrut017
     2300296: woodenStrut018
+    2300298: barrelShelf002
+    2300300: barrelShelf003
     3300000: barrel011
     3300002: barrel016
     3300004: barrel019
@@ -601,6 +607,8 @@ ModelImporter:
     3300292: woodenStrut016
     3300294: woodenStrut017
     3300296: woodenStrut018
+    3300298: barrelShelf002
+    3300300: barrelShelf003
     4300000: barrel011
     4300002: barrel016
     4300004: barrel019
@@ -750,6 +758,8 @@ ModelImporter:
     4300292: woodenStrut016
     4300294: woodenStrut017
     4300296: woodenStrut018
+    4300298: barrelShelf002
+    4300300: barrelShelf003
     9500000: //RootNode
   materials:
     importMaterials: 1

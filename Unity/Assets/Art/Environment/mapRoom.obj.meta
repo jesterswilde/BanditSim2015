@@ -40,6 +40,7 @@ ModelImporter:
     100068: mapFloor
     100070: mapWalls
     100072: woodBox
+    100074: coin013
     400000: barrel
     400002: bedroll
     400004: Box003
@@ -77,6 +78,7 @@ ModelImporter:
     400068: mapFloor
     400070: mapWalls
     400072: woodBox
+    400074: coin013
     2300000: barrel
     2300002: bedroll
     2300004: Box003
@@ -113,6 +115,7 @@ ModelImporter:
     2300066: mapFloor
     2300068: mapWalls
     2300070: woodBox
+    2300072: coin013
     3300000: barrel
     3300002: bedroll
     3300004: Box003
@@ -149,6 +152,7 @@ ModelImporter:
     3300066: mapFloor
     3300068: mapWalls
     3300070: woodBox
+    3300072: coin013
     4300000: barrel
     4300002: bedroll
     4300004: Box003
@@ -185,6 +189,7 @@ ModelImporter:
     4300066: mapFloor
     4300068: mapWalls
     4300070: woodBox
+    4300072: coin013
     9500000: //RootNode
   materials:
     importMaterials: 1

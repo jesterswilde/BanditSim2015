@@ -182,6 +182,7 @@ ModelImporter:
     100352: woodenStrut012
     100354: woodenStrut013
     100356: woodenStrut014
+    100358: meatTop
     400000: //RootNode
     400002: barrel001
     400004: baseRoom
@@ -361,6 +362,7 @@ ModelImporter:
     400352: woodenStrut012
     400354: woodenStrut013
     400356: woodenStrut014
+    400358: meatTop
     2300000: barrel001
     2300002: baseRoom
     2300004: blanket
@@ -539,6 +541,7 @@ ModelImporter:
     2300350: woodenStrut012
     2300352: woodenStrut013
     2300354: woodenStrut014
+    2300356: meatTop
     3300000: barrel001
     3300002: baseRoom
     3300004: blanket
@@ -717,6 +720,7 @@ ModelImporter:
     3300350: woodenStrut012
     3300352: woodenStrut013
     3300354: woodenStrut014
+    3300356: meatTop
     4300000: barrel001
     4300002: baseRoom
     4300004: blanket
@@ -895,6 +899,7 @@ ModelImporter:
     4300350: woodenStrut012
     4300352: woodenStrut013
     4300354: woodenStrut014
+    4300356: meatTop
     9500000: //RootNode
   materials:
     importMaterials: 1
