@@ -77,7 +77,10 @@ public class LocationEditor : Editor {
 			}
 			EditorGUI.indentLevel -=1; 
 		}
-		_locEdit.RoadWidth = EditorGUILayout.FloatField ("Road Width", _locEdit.RoadWidth); 
+		_locEdit.CustomWidth = EditorGUILayout.Toggle ("Custom Road Width", _locEdit.CustomWidth); 
+		if(_locEdit.CustomWidth){
+			_locEdit.RoadWidth = EditorGUILayout.FloatField ("Road Width", _locEdit.RoadWidth); 
+		}
 	}
 
 

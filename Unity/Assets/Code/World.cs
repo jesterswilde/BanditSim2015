@@ -60,6 +60,7 @@ public class World : MonoBehaviour {
 	bool _mapMode = false;
 	public bool _inModeTransition = false;
 	bool _canTransition = true; 
+	public float roadWdith = .03f; 
 
 	
 	//Time Stuff ----------------------------------------------------------
@@ -108,7 +109,7 @@ public class World : MonoBehaviour {
 	void NodeStartup(){
 		_theNodes = FindObjectsOfType<LocNode> (); 
 		foreach (LocNode _node in _theNodes) {
-			_node.DrawRoads(); 
+			_node.DrawRoads(roadWdith); 
 		}
 	}
 	void CaravanRouteStartup(){

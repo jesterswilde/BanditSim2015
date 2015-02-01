@@ -44,11 +44,13 @@ public class LocNode : MonoBehaviour {
 		}
 	}
 
-	public void DrawRoads(){ //makes the visual representatino of the road
+	public void DrawRoads(float _worldWidth){ //makes the visual representatino of the road
 		foreach (LocNode _node in _connectedLocations) {
 			if(_id > _node.ID){ //to only draw the road once, only the one with the highest ID# draws it.
-				GameObject _renderGO = new GameObject(); 
-				float _distance = Vector3.Distance (_node.transform.position, this.transform.position); 
+				float _theWidth;
+				if(_loc.CustomWidth) _theWidth = _loc.RoadWidth; //taking custom width
+				else _theWidth = _worldWidth;  //taking global width
+				GameObject _renderGO = new GameObject(); //line renderer game object
 				_renderGO.transform.position = transform.position;
 				_renderGO.transform.parent = this.transform; 
 				_renderGO.name = "DrawRoad"; 
@@ -58,14 +60,16 @@ public class LocNode : MonoBehaviour {
 				_line.SetVertexCount(2); 
 				_line.SetPosition(0, _renderGO.transform.position); 
 				_line.SetPosition(1, _node.transform.position); 
-				_line.SetWidth(.01f,.01f); 
+				Debug.Log(_theWidth); 
+				_line.SetWidth(_theWidth,_theWidth); 
 				_line.material = World.Map.roadMaterial; 
-				GameObject _colliderGo = new GameObject(); 
+				GameObject _colliderGo = new GameObject();  //collider section ------
+				float _distance = Vector3.Distance (_node.transform.position, this.transform.position); 
 				_colliderGo.transform.parent = transform; 
 				_colliderGo.transform.position  = transform.position ; 
 				_colliderGo.name = "ClickBox"; 
 				BoxCollider _collider = _colliderGo.AddComponent<BoxCollider>(); 
-				_collider.size = new Vector3(.01f,.01f,_distance); 
+				_collider.size = new Vector3(_theWidth, _theWidth,_distance); 
 				_colliderGo.transform.LookAt(_node.transform.position); 
 				_collider.center = new Vector3(0,0,_distance/2); 
 				_colliderGo.layer = 12; 
