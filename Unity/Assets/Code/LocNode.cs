@@ -48,16 +48,27 @@ public class LocNode : MonoBehaviour {
 		foreach (LocNode _node in _connectedLocations) {
 			if(_id > _node.ID){ //to only draw the road once, only the one with the highest ID# draws it.
 				GameObject _renderGO = new GameObject(); 
-				_renderGO.transform.position = transform.position; 
+				float _distance = Vector3.Distance (_node.transform.position, this.transform.position); 
+				_renderGO.transform.position = transform.position;
 				_renderGO.transform.parent = this.transform; 
 				_renderGO.name = "DrawRoad"; 
-				LineRenderer _line = _renderGO.AddComponent<LineRenderer>(); 
+				_renderGO.transform.LookAt (this.transform.position); 
+				LineRenderer _line = _renderGO.AddComponent<LineRenderer>();  //start adding the line renderer
 				_drawnRoads.Add(_line); 
 				_line.SetVertexCount(2); 
 				_line.SetPosition(0, _renderGO.transform.position); 
 				_line.SetPosition(1, _node.transform.position); 
 				_line.SetWidth(.01f,.01f); 
 				_line.material = World.Map.roadMaterial; 
+				GameObject _colliderGo = new GameObject(); 
+				_colliderGo.transform.parent = transform; 
+				_colliderGo.transform.position  = transform.position ; 
+				_colliderGo.name = "ClickBox"; 
+				BoxCollider _collider = _colliderGo.AddComponent<BoxCollider>(); 
+				_collider.size = new Vector3(.01f,.01f,_distance); 
+				_colliderGo.transform.LookAt(_node.transform.position); 
+				_collider.center = new Vector3(0,0,_distance/2); 
+				_colliderGo.layer = 12; 
 			}
 			else{
 				_drawnRoads.Add(null);  //this is just so the lists line up properly

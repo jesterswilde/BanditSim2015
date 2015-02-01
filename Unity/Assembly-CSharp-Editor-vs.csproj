@@ -49,6 +49,10 @@
      <Compile Include="Assets\Editor\CaravanGuardEditor.cs" />
      <Compile Include="Assets\Editor\CaravandEditor.cs" />
      <Compile Include="Assets\Editor\LocationEditor.cs" />
+     <Compile Include="Assets\MeshBrush\Editor\MeshBrushEditor.cs" />
+     <None Include="Assets\MeshBrush\Documentation.txt" />
+     <None Include="Assets\MeshBrush\SimpleVegetation.shader" />
+     <None Include="Assets\MeshBrush\SimpleVegetationUnlit.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

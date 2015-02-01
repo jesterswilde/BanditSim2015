@@ -72,7 +72,9 @@ public class Location : MonoBehaviour{
 	public List<float> ConnectedCitiesDistance { get { return _connectedCitiesDistance; } }
 	//Vector3 _roadDirection; //direction from start of the road to the end. This will also have to be retooled when roads can curve
 	//LineRenderer _lineRender; 
-
+	[SerializeField]
+	float _roadWidth = .01f; 
+	public float RoadWidth { get { return _roadWidth; } set{ _roadWidth = value; } }
 
 	List<CaravanRoute> _passingRoutes = new List<CaravanRoute>(); 
 	public List<CaravanRoute> PassingRoutes { get { return _passingRoutes; } }

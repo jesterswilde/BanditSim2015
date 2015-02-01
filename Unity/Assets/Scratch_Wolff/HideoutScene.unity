@@ -571,6 +571,7 @@ MonoBehaviour:
   LocalBandits: []
   _numConnectedRoads: 0
   _connectedRoads: []
+  _roadWidth: .00999999978
 --- !u!1 &156085509
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,46 +806,6 @@ RectTransform:
   m_AnchoredPosition: {x: .449998468, y: 0}
   m_SizeDelta: {x: -9.10000038, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!1 &225371888
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 225371889}
-  - 114: {fileID: 225371890}
-  m_Layer: 0
-  m_Name: Gather Intel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &225371889
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 225371888}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 887100044}
-  m_RootOrder: 2
---- !u!114 &225371890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 225371888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6faa91120cd587946af5024233987834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _actionName: Gather Intel
 --- !u!1 &241715372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1413,46 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 347684121}
+--- !u!1 &359243374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 359243375}
+  - 114: {fileID: 359243376}
+  m_Layer: 0
+  m_Name: Gather Intel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &359243375
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359243374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 940915945}
+  m_RootOrder: 1
+--- !u!114 &359243376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359243374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6faa91120cd587946af5024233987834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionName: Gather Intel
 --- !u!1 &364795331
 GameObject:
   m_ObjectHideFlags: 0
@@ -3421,6 +3422,46 @@ Prefab:
   m_RootGameObject: {fileID: 373168587}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &792961330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 792961331}
+  - 114: {fileID: 792961332}
+  m_Layer: 0
+  m_Name: Gather Intel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &792961331
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 792961330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 887100044}
+  m_RootOrder: 2
+--- !u!114 &792961332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 792961330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6faa91120cd587946af5024233987834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _actionName: Gather Intel
 --- !u!1 &800640084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3812,7 +3853,7 @@ Transform:
   m_Children:
   - {fileID: 1753482752}
   - {fileID: 1670591274}
-  - {fileID: 225371889}
+  - {fileID: 792961331}
   m_Father: {fileID: 1945143382}
   m_RootOrder: 1
 --- !u!114 &887100045
@@ -3834,7 +3875,7 @@ MonoBehaviour:
   _optionsNum: 2
   _choicesList: 0100000002000000
   _localActions:
-  - {fileID: 225371890}
+  - {fileID: 792961332}
   - {fileID: 1670591275}
   _isRoad: 0
   _numRoadPoints: 1
@@ -3844,6 +3885,7 @@ MonoBehaviour:
   LocalBandits: []
   _numConnectedRoads: 0
   _connectedRoads: []
+  _roadWidth: .00999999978
 --- !u!65 &887100046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4184,7 +4226,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 202871838}
-  - {fileID: 1424164143}
+  - {fileID: 359243375}
   m_Father: {fileID: 1945143382}
   m_RootOrder: 3
 --- !u!114 &940915946
@@ -4206,7 +4248,7 @@ MonoBehaviour:
   _optionsNum: 1
   _choicesList: 01000000
   _localActions:
-  - {fileID: 1424164144}
+  - {fileID: 359243376}
   _isRoad: 0
   _numRoadPoints: 1
   _roadPoints:
@@ -4215,6 +4257,7 @@ MonoBehaviour:
   LocalBandits: []
   _numConnectedRoads: 0
   _connectedRoads: []
+  _roadWidth: .00999999978
 --- !u!65 &940915947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4538,6 +4581,7 @@ MonoBehaviour:
   LocalBandits: []
   _numConnectedRoads: 0
   _connectedRoads: []
+  _roadWidth: .00999999978
 --- !u!4 &1029322602
 Transform:
   m_ObjectHideFlags: 0
@@ -4675,6 +4719,7 @@ MonoBehaviour:
   LocalBandits: []
   _numConnectedRoads: 0
   _connectedRoads: []
+  _roadWidth: .00999999978
 --- !u!4 &1054599022
 Transform:
   m_ObjectHideFlags: 0
@@ -4992,6 +5037,7 @@ MonoBehaviour:
   LocalBandits: []
   _numConnectedRoads: 0
   _connectedRoads: []
+  _roadWidth: .00999999978
 --- !u!1 &1160343504
 GameObject:
   m_ObjectHideFlags: 0
@@ -5873,6 +5919,7 @@ MonoBehaviour:
   LocalBandits: []
   _numConnectedRoads: 0
   _connectedRoads: []
+  _roadWidth: .00999999978
 --- !u!4 &1355726559
 Transform:
   m_ObjectHideFlags: 0
@@ -5932,6 +5979,7 @@ MonoBehaviour:
   LocalBandits: []
   _numConnectedRoads: 0
   _connectedRoads: []
+  _roadWidth: .00999999978
 --- !u!4 &1370864501
 Transform:
   m_ObjectHideFlags: 0
@@ -6136,46 +6184,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1405196498}
---- !u!1 &1424164142
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1424164143}
-  - 114: {fileID: 1424164144}
-  m_Layer: 0
-  m_Name: Gather Intel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1424164143
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1424164142}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 940915945}
-  m_RootOrder: 1
---- !u!114 &1424164144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1424164142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6faa91120cd587946af5024233987834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _actionName: Gather Intel
 --- !u!1 &1455700372
 GameObject:
   m_ObjectHideFlags: 0
@@ -7397,6 +7405,7 @@ MonoBehaviour:
   LocalBandits: []
   _numConnectedRoads: 0
   _connectedRoads: []
+  _roadWidth: .00999999978
 --- !u!65 &1650839425
 BoxCollider:
   m_ObjectHideFlags: 0

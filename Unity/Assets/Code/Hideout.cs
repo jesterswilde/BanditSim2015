@@ -87,7 +87,10 @@ public class Hideout : MonoBehaviour {
 	public void NewDay(){
 		FeedBandits (); 
 		NewBanditsArrive (); 
-		List<Bandit> _tempBanditList = _allBandits; 
+		List<Bandit> _tempBanditList = new List<Bandit> (); 
+		foreach (Bandit _bandit in _allBandits) {
+			_tempBanditList.Add(_bandit); 
+		}
 		foreach (Bandit _bandit in _tempBanditList) {
 			_bandit.NewDay(); 
 		}
