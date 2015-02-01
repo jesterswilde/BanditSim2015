@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: map
-  m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 3beae1fc4fd628b4295d29b5ccc8dcf3, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -18,9 +18,13 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: b870f2dac36d15943a065d6d5c2e9afa, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Scale: {x: .800000012, y: .800000012}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: .5
     m_Colors:
       data:
         first:

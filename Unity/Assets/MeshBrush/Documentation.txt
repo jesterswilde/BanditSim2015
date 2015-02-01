@@ -1,0 +1,95 @@
+/*
+
+MeshBrush allows you to paint meshes onto your GameObject's surface.
+
+To start painting you need to select your GameObject on top of which you want to paint meshes in the scene, 
+then go to the GameObject menu above in the toolbar and click "Paint meshes on selected GameObject".
+Note that the script doesn't work if you don't have a collider on your GameObject, so make sure you have one attached.
+If you don't have a collider attached, MeshBrush will ask you if you want to add a Mesh Collider now. You can either say yes please
+and have a mesh collider attached, or if you want some other type of collider on your mesh you can say no and add one by yourself.
+
+Now that you have added the MeshBrush script to your object, you will now be able to hover above your GameObject with your mouse and see the actual circle brush appear on your collider's surface.
+
+Never have more than one collider on a GameObject on which you want to paint meshes: MeshBrush will only consider the first one you defined.
+ 
+ 
+You can increase or decrease the brushes' radius by pressing or holding the I and O key on your keyboard. In case you can't see your brush on the object 
+because of a near bright white light, you can change the default white color of the brush right in the inspector to help yourself see and organize
+your circle brush(es) better. If you don't like the default keyboard shortcuts you can always customize them through the 'Customize Keyboard Shortcuts' foldout in the inspector.
+To start painting meshes you have to assign at least one mesh prefab to the "Set of meshes to paint" array in the inspector first.
+Now you can paint your mesh by hovering your mouse over your GameObject in the active scene view and pressing the P (like "paint") button.
+This will place the single mesh in the center of the brush area and adapt its position and rotation to the underlying surface (the local Y-axis of
+the painted mesh will be the one pointing away from the surface of your GameObject).
+
+You can also press and hold down your paint button: this will continuously paint your meshes until you let go of the button. The speed at which you paint meshes
+while holding down the P key is defined by the "Delay" value in the inspector, which defines the amount of seconds between brush strokes.
+
+________________________________________
+
+>>>SET OF MESHES TO PAINT
+You can paint multiple meshes of the same type by simply adding one single mesh to the Set of meshes to paint and increase the number of meshes value in the inspector.
+By increasing the Nr. of meshes value, the scattering percentage slider will appear. Scattering defines (in percentage) how far the painted meshes are randomly scattered away from the 
+center of your brush; so a value of zero for example would horribly spam all the meshes focused to the center of the circle brush area. A value of 100% would use the entire brush area and eventually
+scatter your meshes even to the outer edge of your circle brush.
+
+You can also paint many meshes of various types by adding more prefab meshes to your Set of meshes to paint. MeshBrush will then cycle through your set randomly and 
+spawn the selected number of meshes (defined by the Nr. of meshes value in the inspector) on your GameObject's surface based on the Offset, Scattering, Randomize and Additive scale parameters.
+<<<
+
+________________________________________
+
+>>>RANDOMIZE
+The randomize parameters randomly alter the generation of the meshes you paint.
+In the Randomize section of the inspector view you can randomly scale, rotate or offset the meshes you paint.
+
+You can choose to randomly scale along all three X, Y and Z axes uniformly, or randomly scale along each individual axis.
+Then there is the Scale within range toggle, which allows you to define custom ranges that MeshBrush will consider while randomizing your painted meshes.
+
+Say we are painting for example a simple plain rock mesh onto a terrain (or also a simple crate onto a floor geometry mesh): first of all make sure the pivot point of your meshes
+are correctly set up (for instance if you paint vegetation grass, the pivot should be placed at the bottom area of the mesh since that's where the meshes will sit on afterwards).
+Now... if we choose to scale uniformly and not within a custom range, the Random Scale
+slider will appear. Let's say we put this slider to the value of 0.5... This will spawn the mesh smaller than the original prefab's size, and at the same time randomly scale it within
+a number near to that value of 0.5. This way, you can define not only how much randomness you want to apply, but also how much bigger or smaller you want your mesh to more or less be than
+the original prefab's size (you get two birds with one stone).
+
+But now what if this isn't enough control for us? What if we want to paint the mesh a bit taller than the original prefab mesh, but still more or less half the size?
+No problem, just toggle on "Scale within range" and untick "Scale uniformly". Now you see four fields appear (an X, Y, Z and a W value). The X and Y values define the minimum and maximum
+width of the mesh (on the local X/Z axis of the mesh), while the Z and W values define the minimum/maximum height (Y-axis) of the painted mesh. So in our case, we could set something like
+X=0.4; Y=0.6; Z=0.5; W=0.9 to paint the mesh slightly taller than the original, but still randomly scaled between the minimum/maximum width and height.
+You can freely combine the two Uniform scale and Range toggles (meaning you can ALWAYS at any time choose to scale uniformly and/or within custom ranges).
+
+You can always delete all the meshes you've painted so far with the Delete button below in the inspector. Just fiddle around with the settings until you get a pleasant paint brush
+for your GameObject :)
+
+Last but not least, you can randomly rotate the painted meshes on their local Y-axis with the Random Y rotation amount slider (value is expressed in percentage).
+E.g. a value of 0 would always paint your meshes with the same default Y rotation, and a value of 100% will always spawn your meshes with a different rotation on the Y axis.
+<<<
+
+________________________________________
+
+>>>APPLY ADDITIVE SCALE
+You can also choose to add an additive scale to your mesh below in the inspector, this will add the value you define to the painted meshes AFTER they have been randomized.
+You can also additively shrink your models by simply typing in a negative number (which obviously can't and shouldn't go below -1... as we don't want to invert scale our painted meshes... That'd be weird :S.
+As in the random scale parameters, you can choose here too to scale uniformly on all three axes or along each axis individually.
+<<<
+
+________________________________________
+
+
+>>>OPTIMIZE
+When you are done painting meshes, you can optimize your scene by flagging you've painted so far as static, or even by combining everything into one single mesh (per metarial).
+Combining the meshes will discard all of their components except their mesh renderer and filter, and automatically flag the combined mesh as static afterwards.
+
+WARNING!	Combining meshes cannot be undone, so be careful with this button.
+			Only use it once you are really really 100% sure that you're done painting meshes on your GameObject (or in a specific area of your GameObject); as a final "optimization touch" to your scene.
+<<<
+
+
+I added an extensive "Help" foldout menu in the inspector of the tool for further information about MeshBrush's functionalities and tips for usage... or also just in case you forgot your keyboard shortcuts ;)
+
+Cheers ;)
+
+-Raphael Beck, 2014
+
+*/
+ 
