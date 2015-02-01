@@ -130,7 +130,6 @@ public class Hideout : MonoBehaviour {
 		foreach (Bandit _theBandit in _allBandits) {
 			_dailyFood += _theBandit.FoodConsumption; 
 		}
-		Debug.Log ("Food Consumed " + _dailyFood + " | Total food " + _totalFood); 
 		if(_dailyFood != 0){
 			return _totalFood /(int)_dailyFood; 
 		}

@@ -109,6 +109,7 @@ public class Caravan : MonoBehaviour {
 		_itinerary = _theLocs; 
 		transform.position = _itinerary [0].transform.position; 
 		_travelSpeed = _speed; 
+		transform.LookAt (_itinerary [1].transform.position); 
 	}
 	void Travel(){ //called for moving around
 		if (_itinerary.Count > _travelingFrom) { //if there are still places to go
@@ -120,6 +121,9 @@ public class Caravan : MonoBehaviour {
 			else{
 				_destination = _itinerary[_travelingFrom].transform.position; 
 			}
+			Quaternion  _oldRot = transform.rotation; //  getting a rotation lerp
+			transform.LookAt(_destination);
+			transform.rotation = Quaternion.Lerp(_oldRot, transform.rotation , Time.deltaTime *3);  
 			_direction = (_destination - transform.position).normalized; //this is the direction
 			float _maxDistance = Vector3.Distance(transform.position, _destination); //this is the how far away it is
 			transform.position += _direction * Mathf.Clamp(_travelSpeed*Time.deltaTime,0, _maxDistance); //move it towards the goal

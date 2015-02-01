@@ -190,7 +190,10 @@ public class CaravanRoute : MonoBehaviour, IComparable<CaravanRoute> {
 	void SpawnCaravan(){
 		if(_theRoute.Count > 0){
 			GameObject _theCaravan = Instantiate (caravanPrefab) as GameObject; 
-			_theCaravan.GetComponent<Caravan> ().SpawnCaravan (_theRoute, _speed); 
+			if(_theCaravan.GetComponent<Caravan>()!= null){
+				_theCaravan.GetComponent<Caravan> ().SpawnCaravan (_theRoute, _speed); 
+			}
+			else Debug.Log("Error! You a stupid Ho! The route " + this.name +" is spawning a caravan "+ _theCaravan.name +" But that is not actually a caravan. It has no caravan route"); 
 		}
 	}
 
