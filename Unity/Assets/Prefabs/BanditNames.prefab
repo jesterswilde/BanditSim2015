@@ -39,9 +39,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0431c0b43acd2e499313bea22161c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maleFirstNames: []
-  femaleFirstNames: []
-  lastNames: []
+  maleFirstNames:
+  - Daniel
+  - Benny
+  - 'Jesse '
+  - 'Claude '
+  - 'Nicholas '
+  - Richard
+  - Butch
+  - Gene
+  - Robin
+  - Jim
+  - Aaron
+  - Chris
+  - Will
+  - Cole
+  - Sam
+  - Dean
+  - Mario
+  - Kit
+  - Kell
+  - Jay
+  - Bobby
+  femaleFirstNames:
+  - Annie
+  - Christina
+  - Suzy
+  - Brenda
+  - Ella
+  - Jane
+  - Mary
+  - Danielle
+  - 'Patricia '
+  - Hae
+  - Leslie
+  - Revy
+  - Freyja
+  - Katherine
+  - 'Nadia '
+  - Sandra
+  - Leona
+  - Aileen
+  - Andrea
+  - Elizabeth
+  lastNames:
+  - Dutch
+  - Rock
+  - Borden
+  - Slamfist
+  - Chere
+  - Shepard
+  - Landale
+  - Valkyrie
+  - Ryan
+  - Li
+  - Jade
+  - Valeth
+  - Morooka
+  - Oak
+  - Sully
+  - 'Breckon '
+  - Sandysoil
+  - Daring
+  - the Great
+  - the Hearty
+  - 'Garrett '
+  - Roberts
+  - the Viper
+  - 'the Uninspired '
+  - the Poorlynamed
+  - ', suspected robot'
+  - Smith
+  - Kidd
+  - Faith
+  - Wolff
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

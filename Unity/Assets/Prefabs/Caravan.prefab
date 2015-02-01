@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -.710825026, y: -6.38134336, z: -1.61948252}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .00999999978, y: .00999999978, z: .00999999978}
   m_Children: []
   m_Father: {fileID: 400000}
   m_RootOrder: 0
@@ -86,7 +86,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 697791e6ee7f49d49aacd19a8a754402, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -121,13 +121,14 @@ MonoBehaviour:
   _moneyMax: 0
   _banditsMin: 0
   _banditsMax: 0
+  _dc: 0
   _numGuard: 1
   _guards:
   - {fileID: 0}
   _guardRange:
   - {x: 0, y: 0}
+  ActiveGuards: []
   _itinerary: []
-  _travelSpeed: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
