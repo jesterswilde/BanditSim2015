@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.0191412, y: -9.80316353, z: -3.17315221}
+  m_LocalPosition: {x: -5.91554117, y: -5.10225821, z: -4.82065058}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400006}
@@ -155,8 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _displayName: 
   _description: 
-  _foodMin: 20
-  _foodMax: 100
+  _foodMin: 1
+  _foodMax: 10
   _moneyMin: 50
   _moneyMax: 175
   _banditsMin: 0
