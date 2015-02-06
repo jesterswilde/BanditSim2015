@@ -6,9 +6,11 @@ public class Combat : MonoBehaviour {
 
 	List<Bandit> _theBandits = new List<Bandit> (); 
 	List<CaravandGuard> _theGuards = new List<CaravandGuard> (); 
+	int _totalXP; 
 
 	public void StartCombat (Location _ambushLoc, Caravan _caravan){
 		Debug.Log ("Battle"); 
+		TallyTotalXP (); 
 		_theBandits = _ambushLoc.LocalBandits;
 		_theGuards = _caravan.ActiveGuards; 
 		Debug.Log (_theBandits.Count + " : " + _theGuards.Count); 
@@ -30,12 +32,27 @@ public class Combat : MonoBehaviour {
 	}
 	void EndCombat(Caravan _theCaravan){
 		if (_theBandits.Count == 0)
-						_theCaravan.CaravanVictorious ();
-				else
-						_theCaravan.CaravanDefeated (); 
+			_theCaravan.CaravanVictorious ();
+		else {
+			AwardXP(); 
+			_theCaravan.CaravanDefeated (); 
+		}
 
 		_theBandits = new List<Bandit> ();
 		_theGuards = new List<CaravandGuard> (); 
+	}
+	void TallyTotalXP(){
+		foreach (CaravandGuard _guard in _theGuards) {
+			_totalXP += _guard.XP; 
+		}
+	}
+	void AwardXP(Location _ambushLoc ){
+		int _xpPer = _totalXP / _ambushLoc.LocalBandits.Count;
+		foreach (Bandit _bandit in _ambushLoc.LocalBandits) {
+			if(_bandit != null){
+				_bandit.GainXP(_xpPer); 
+			}
+		}
 	}
 	bool CombatStillHappening(){
 		if (_theGuards.Count > 0 && _theBandits.Count > 0)

@@ -42,10 +42,13 @@ public class PanelUI : MonoBehaviour {
 	GameObject _pickBanditPanel; 
 
 	public Object locationPrefabUI;
-	RectTransform _locUITrans; 
+	RectTransform _locUITrans; //specific location selection
 
 	[SerializeField]
 	Object SelectBanditPopupPrefab; 
+	[SerializeField]
+	Object _ambushSetupUIPrefab;
+	RectTransform _ambushUI;
 	
 
 	//MODE STUFF --------------------------------------------------------------------------------------------------------------------
@@ -147,12 +150,24 @@ public class PanelUI : MonoBehaviour {
 		_locUI.GetComponent<SpecificLocationUI> ().Startup (_theLoc); //let the UI know what location it's over
 		RedrawLocation (); 
 	}
+	public void SelectRoad(RoadClicked _road, Vector3 _clickPoint){
+		DeselectLocation (); 
+		GameObject _ambushGO = Instantiate (_ambushSetupUIPrefab) as GameObject;
+		_ambushUI = _ambushGO.transform as RectTransform; 
+		_ambushGO.transform.SetParent (_canvas.transform, false); 
+		_ambushUI = _ambushGO.transform as RectTransform; 
+		_ambushUI.transform.position = World.mainCam.WorldToScreenPoint (_clickPoint); 
+		_ambushUI.GetComponent<AmbushSetupUI> ().Startup (_road, _clickPoint); 
+	}
 	public void RedrawLocation(){
 		
 	}
 	public void DeselectLocation(){
 		if (_locUITrans != null) {
 			Destroy (_locUITrans.gameObject); 
+		}
+		if (_ambushUI != null) {
+			Destroy(_ambushUI.gameObject); 
 		}
 	}
 

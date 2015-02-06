@@ -78,9 +78,10 @@ public class Location : MonoBehaviour{
 	[SerializeField]
 	bool _customWidth = false; 
 	public bool CustomWidth { get { return _customWidth; } set { _customWidth = value; } }
-
-	List<CaravanRoute> _passingRoutes = new List<CaravanRoute>(); 
-	public List<CaravanRoute> PassingRoutes { get { return _passingRoutes; } }
+	
+	public List<CaravanRoute> PassingRoutes { get { return _node.PassingRoutes; } }
+	LocNode _node; 
+	public LocNode Node {get{return _node;}set { _node = value;}}
 
 
 	public virtual void BanditArrives(Bandit _theBandit){ //just deals with bandits showing up and leaving
@@ -212,10 +213,6 @@ public class Location : MonoBehaviour{
 		MakeRoadPoints (); 
 	}
 
-	public void AddCaravanRoute(CaravanRoute _theRoute){
-		_passingRoutes.Add (_theRoute); 
-		_passingRoutes.Sort (); 
-	}
 
 
 

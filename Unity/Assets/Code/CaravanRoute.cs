@@ -13,6 +13,7 @@ public class CaravanRoute : MonoBehaviour, IComparable<CaravanRoute> {
 	int _counter; 
 	[SerializeField]
 	float _speed; 
+	public float Speed { get { return _speed; } }
 	float _totalRouteDistance; 
 	public UnityEngine.Object caravanPrefab; 
 
@@ -62,12 +63,27 @@ public class CaravanRoute : MonoBehaviour, IComparable<CaravanRoute> {
 		return _distance; 
 	}
 
-	public int CompareTo(CaravanRoute _otherRoute){
+	public int CompareTo(CaravanRoute _otherRoute){ //fuffilling interface stuff so the list can be sorted.
 		if (_otherRoute.DC > _dc)
 						return -1; 
 		if (_otherRoute.DC == _dc)
 						return 0; 
 		return 1; 
+	}
+
+	public bool ContainsNode(LocNode _theNode){
+		foreach (LocNode _otherNode in _theRoute) {
+			if(_otherNode.ID == _theNode.ID)
+				return true;
+		}
+		return false; 
+	}
+	public LocNode FirstLocation(LocNode _locA, LocNode _locB){
+		for (int i = 0; i < _theRoute.Count; i++) {
+			if(_theRoute[i].ID == _locA.ID) return _locA; 
+			if(_theRoute[i].ID == _locB.ID) return _locB; 
+		}
+		return null; 
 	}
 
 	//UI SHiznit ------------------------------------------------------------------------------------------

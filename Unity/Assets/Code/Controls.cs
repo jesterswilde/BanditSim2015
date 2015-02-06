@@ -49,6 +49,10 @@ public class MapControl : Controls {
 			{
 				World.Map.SelectLocation(_hit.collider.GetComponent<Location>()); 
 			}
+			if(_hit.collider.gameObject.layer == 12){
+				RoadClicked _roadClicked = _hit.collider.gameObject.GetComponent<RoadClicked>(); 
+				World.PanelUI.SelectRoad(_roadClicked,_hit.point); 
+			}
 		}
 	}
 	public override void LeaveMode ()

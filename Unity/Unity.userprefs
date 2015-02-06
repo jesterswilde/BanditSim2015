@@ -1,15 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Hideout.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Combat.cs">
     <Files>
-      <File FileName="Assets\Code\LocNode.cs" Line="8" Column="1" />
-      <File FileName="Assets\Code\Building.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Buildings\BD_Barracks.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Buildings\BD_Maproom.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Location.cs" Line="77" Column="81" />
-      <File FileName="Assets\Editor\LocationEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Controls.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Hideout.cs" Line="92" Column="34" />
+      <File FileName="Assets\Code\Caravan.cs" Line="1" Column="1" />
+      <File FileName="Unity.sln" Line="1" Column="1" />
+      <File FileName="Assets\Code\Controls.cs" Line="54" Column="56" />
+      <File FileName="Assets\Code\RoadClicked.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Bandit.cs" Line="217" Column="9" />
+      <File FileName="Assets\Code\BanditClass.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\Combat.cs" Line="37" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

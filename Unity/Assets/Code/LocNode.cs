@@ -15,18 +15,23 @@ public class LocNode : MonoBehaviour {
 	public bool AlreadyCalculated { get { return _alreadyCalculated; } set { _alreadyCalculated = value; } }
 
 	Location _loc; 
+	public Location ConnectedLocation { get { return _loc; } }
 	
 	List<LocNode> _connectedLocations = new List<LocNode> ();
 	public List<LocNode> ConnectedNodes { get { return _connectedLocations; } }
 	List<LineRenderer> _drawnRoads = new List<LineRenderer> (); 
 	List<float> _locDistance = new List<float> (); 
 	public List<float> LocDistance { get { return _locDistance; } }
+
+	List<CaravanRoute> _passingRoutes = new List<CaravanRoute> (); 
+	public List<CaravanRoute> PassingRoutes { get { return _passingRoutes; } }
 	
 
 	
 
 	public void Startup(Location _theLoc){
 		_loc = _theLoc; 
+		_loc.Node = this; 
 		GetID (); 
 	}
 
@@ -73,6 +78,8 @@ public class LocNode : MonoBehaviour {
 				_colliderGo.transform.LookAt(_node.transform.position); 
 				_collider.center = new Vector3(0,0,_distance/2); 
 				_colliderGo.layer = 12; 
+				RoadClicked _roadClcked = _colliderGo.AddComponent<RoadClicked>(); 
+				_roadClcked.Startup(this, _node); 
 			}
 			else{
 				_drawnRoads.Add(null);  //this is just so the lists line up properly
@@ -81,9 +88,8 @@ public class LocNode : MonoBehaviour {
 	}
 
 	public void KnowAboutRoute(CaravanRoute _route){
-		if (_loc != null) {
-			_loc.AddCaravanRoute(_route); 		
-		}
+		_passingRoutes.Add (_route);
+		_passingRoutes.Sort (); 
 	}
 	public void HighlightRoad(LocNode _theNode, bool _turnOn){ //used to highligh the section of the road
 		int i = WhichRoad (_theNode); 

@@ -80,7 +80,9 @@ public class Bandit : MonoBehaviour {
 
 
 	List<CaravanRoute>_knownRoutes = new List<CaravanRoute> (); 
-	int _foodHaul = 0; 
+	int _foodHaul = 0;
+
+	BanditClass _class; 
 
 
 
@@ -212,7 +214,7 @@ public class Bandit : MonoBehaviour {
 	
 
 	//LEVEL & XP ------------------------------------------------------------------------------------------------------
-	void GainXP(int _xpGained){
+	public void GainXP(int _xpGained){
 		_xp += _xpGained; 
 		if (_xp >= (_level + 1) * 100) {
 			_xp -= (_level+1)*100;
@@ -301,6 +303,7 @@ public class Bandit : MonoBehaviour {
 		_id = World.GetID ();
 		_name = "Bandit_" + _id.ToString (); 
 		SpawnBandit (); 
+		_class = new ClassPawn (); 
 	}
 
 	void Update(){

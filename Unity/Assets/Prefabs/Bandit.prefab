@@ -208,7 +208,7 @@ MonoBehaviour:
   _guardTarget: {fileID: 0}
   _currentLocation: {fileID: 0}
   _currentTask: {fileID: 0}
-  _travelSpeed: .00999999978
+  _travelSpeed: .100000001
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
